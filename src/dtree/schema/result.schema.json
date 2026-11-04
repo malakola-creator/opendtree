@@ -1,0 +1,15 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://dtree.local/schema/result.schema.json",
+ "title": "dtree agent result",
+ "description": "The last word of every agent at the end of a job (claude --json-schema, codex --output-schema, the chat loop's finish tool). ผลที่ AI ต้องตอบตอนจบงาน",
+ "type": "object",
+ "properties": {
+  "built": {"type": "boolean", "description": "true only when the option is built and committed on the branch"},
+  "tests": {"type": "string", "description": "the suites run and their pass / fail counts"},
+  "impact": {"type": "string", "description": "what changes against the answer taken now, with numbers"},
+  "note": {"type": "string", "description": "anything the person should know before choosing"}
+ },
+ "required": ["built", "tests", "impact", "note"],
+ "additionalProperties": false
+}

@@ -1,0 +1,710 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://dtree.local/schema/config.schema.json",
+ "title": "dtree project config (.dtree/config.json)",
+ "description": "A project's own settings; every key is optional (dtree's defaults fill the rest). Keys starting with _ are notes. ตั้งค่าของโปรเจกต์",
+ "type": "object",
+ "properties": {
+  "name": {
+   "type": "string",
+   "description": "default: the directory's name"
+  },
+  "db": {
+   "type": "string",
+   "default": ".dtree/decisions.sqlite",
+   "description": "relative to the project root; $DTREE_DB overrides"
+  },
+  "base": {
+   "type": "string",
+   "default": "main"
+  },
+  "worktrees": {
+   "type": "string",
+   "default": "../{name}-worktrees"
+  },
+  "logs": {
+   "type": "string",
+   "default": ".dtree/logs"
+  },
+  "mode": {"enum": ["decisions", "story"], "default": "decisions", "description": "what the tree is: decisions (questions a person answers, options tried on branches) or a story (every option is a scene that follows; the reader chooses)"},
+  "adr_dir": {
+   "type": "string",
+   "default": "docs/decisions"
+  },
+  "rules": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "the project's rules, told to every agent"
+  },
+  "test_command": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "docs": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "where behaviour changes are documented"
+  },
+  "merge_trailer": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "a line added to merge commits"
+  },
+  "timeout_s": {
+   "type": "number",
+   "default": 5400,
+   "description": "a job's time limit"
+  },
+  "max_parallel_jobs": {
+   "type": "integer",
+   "minimum": 1,
+   "default": 3
+  },
+  "default_agent": {
+   "type": "string",
+   "default": "claude"
+  },
+  "chat": {
+   "$ref": "#/$defs/chat"
+  },
+  "agents": {
+   "type": "object",
+   "additionalProperties": {
+    "oneOf": [
+     {
+      "$ref": "#/$defs/agent"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "description": "override, add, or (null) remove an agent; defaults: claude, codex, muse, grok, gemini, local"
+  },
+  "server": {
+   "type": "object",
+   "properties": {
+    "host": {
+     "type": "string",
+     "default": "127.0.0.1"
+    },
+    "port": {
+     "type": "integer",
+     "default": 5077
+    },
+    "allowed_hosts": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "default": [],
+     "description": "names (besides IP addresses and localhost) the server may be opened by, e.g. a machine's own name on the LAN; any other Host is refused (DNS rebinding) / ชื่อที่เปิดเซิร์ฟเวอร์นี้ได้ (นอกจากที่อยู่ IP และ localhost)"
+    }
+   }
+  },
+  "verify": {
+   "type": "object",
+   "description": "ก: dtree runs the project's tests and measures itself, on a trial's tip and on its baseline, in the sandbox (verify.py, docs/verify.md). A check that passed or failed is reused by its key: the commit, the command, the sandbox settings and the installation of the programs it runs (their files, and a Python's site-packages, by size and mtime: pip install moves it); after another change the tests see from outside the commit (a data or model file, extra_ro, a file edited inside site-packages), dtree verify --force. dtree verify exits 0 passed, 1 not passed or refused, 3 nothing run",
+   "properties": {
+    "enabled": {
+     "type": "boolean",
+     "default": true,
+     "description": "false: no verification at all (dtree verify is refused)"
+    },
+    "auto": {
+     "type": "boolean",
+     "default": true,
+     "description": "verify after every build or update job that ends with commits, and after a clean update, when tests or measures is set (a bare test_command is only for dtree verify by hand)"
+    },
+    "tests": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "the test command; {tests} is replaced by the selected test files (shell-quoted); without {tests} the command runs as it is; pytest (also a bare pytest inside quotes: bash -o pipefail -c 'pytest …') gets its JUnit flags through PYTEST_ADDOPTS, so pipes and subshells are fine: leave --junitxml and PYTEST_ADDOPTS out of the command (they hide dtree's; pytest options for every run go in sandbox.env's PYTEST_ADDOPTS, which dtree appends to), and a pytest run that ends with no JUnit file and no printed counts is an error (behind a pipe a crashed pytest still ends 0); null = test_command as it is, for dtree verify only (after a job no tests run)"
+    },
+    "baseline": {
+     "type": "boolean",
+     "default": true,
+     "description": "also run on the commit the branch left the base from (the merge-base), to compare"
+    },
+    "timeout_s": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "default": 1800,
+     "description": "per check"
+    },
+    "workdir": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "default": null,
+     "description": "where the verification worktrees go (removed after each run); default <worktrees>/.verify; /dev/shm/... keeps them in RAM"
+    },
+    "sandbox": {
+     "enum": [
+      "bwrap",
+      "none"
+     ],
+     "default": "bwrap",
+     "description": "bwrap: no network, only the worktree writable; when bwrap cannot run here every check ends error. none: run directly"
+    },
+    "select": {
+     "type": "object",
+     "description": "which test files {tests} becomes, from the files the trial changed",
+     "properties": {
+      "always": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "description": "test files (or globs) always run"
+      },
+      "changed": {
+       "type": "boolean",
+       "default": true,
+       "description": "use the trial's changes (the rules below, and a changed conftest.py or test helper: the tests below it); false: only always"
+      },
+      "pattern": {
+       "oneOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       ],
+       "default": [
+        "tests/test_{stem}.py",
+        "tests/test_{stem}_*.py"
+       ],
+       "description": "the test files named after a changed file ({stem}: its name without the extension; for __init__.py the package's)"
+      },
+      "map": {
+       "type": "array",
+       "description": "a directory's own tests: when a changed file matches, these run",
+       "items": {
+        "type": "object",
+        "required": [
+         "match",
+         "tests"
+        ],
+        "properties": {
+         "match": {
+          "oneOf": [
+           {
+            "type": "string"
+           },
+           {
+            "type": "array",
+            "items": {
+             "type": "string"
+            }
+           }
+          ],
+          "description": "glob(s) of changed files, ** for any directories"
+         },
+         "tests": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          },
+          "description": "test files or globs"
+         }
+        }
+       }
+      },
+      "imports": {
+       "type": "boolean",
+       "default": true,
+       "description": "also the test files that import a changed module (read with Python's ast)"
+      },
+      "hub_limit": {
+       "type": "integer",
+       "minimum": 0,
+       "default": 10,
+       "description": "a module imported by more test files than this is a hub, left to always when always selects a file (with no always file its importers run); so is a conftest.py or test helper with more test files below it (else the tests below it run)"
+      },
+      "test_files": {
+       "oneOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       ],
+       "default": [
+        "tests/**/test_*.py"
+       ],
+       "description": "which files are test files (globs)"
+      },
+      "fallback": {
+       "enum": [
+        "always",
+        "all",
+        "skip"
+       ],
+       "default": "always",
+       "description": "when nothing is selected: always (only the always set, here empty: nothing runs), all (the command without the file list), skip (no tests check)"
+      }
+     }
+    },
+    "measures": {
+     "type": "array",
+     "description": "numbers read from a command's output, compared with the baseline's; identical commands run once",
+     "items": {
+      "type": "object",
+      "required": [
+       "name",
+       "command",
+       "pattern"
+      ],
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 60,
+        "description": "not \"tests\""
+       },
+       "command": {
+        "type": "string",
+        "description": "run in the verification worktree, in the sandbox"
+       },
+       "pattern": {
+        "type": "string",
+        "description": "a regular expression (multi-line); the group 'value' (or the first group) of its LAST match is the number"
+       },
+       "unit": {
+        "type": "string"
+       },
+       "better": {
+        "enum": [
+         "higher",
+         "lower"
+        ]
+       },
+       "timeout_s": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "description": "default verify.timeout_s"
+       },
+       "tolerance_pct": {
+        "type": "number",
+        "minimum": 0,
+        "default": 0,
+        "description": "a change smaller than this (in % of the baseline) is told as the same: for noisy numbers"
+       }
+      }
+     }
+    }
+   }
+  },
+  "sandbox": {
+   "type": "object",
+   "description": "what sandboxed commands (agents, verification) see",
+   "properties": {
+    "ro_binds": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "paths of the main checkout (git-ignored data, models) shown read-only inside a worktree"
+    },
+    "copies": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "paths of the main checkout copied into a verification worktree (writable, thrown away)"
+    },
+    "env": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     },
+     "description": "environment for sandboxed commands"
+    },
+    "root": {
+     "enum": [
+      "allowlist",
+      "host"
+     ],
+     "default": "allowlist",
+     "description": "allowlist: an empty root with /usr, /etc, /opt, /sys and an empty $HOME; host: the whole filesystem read-only with /run and secrets hidden"
+    },
+    "nested": {
+     "type": "boolean",
+     "default": false,
+     "description": "the project's commands make sandboxes themselves (dtree's own tests): do not disable user namespaces"
+    },
+    "gpu": {
+     "type": "boolean",
+     "default": false,
+     "description": "show the GPU's device nodes (rendering tests)"
+    },
+    "tmpfs": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "paths in the worktree given an empty writable RAM directory (what tests write and nobody keeps: data/, build/)"
+    },
+    "secrets": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "files or directories of the main checkout hidden in every sandbox (.dtree/write_token always)"
+    },
+    "extra_ro": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "absolute paths shown read-only (with an allowlist root)"
+    },
+    "path_tools": {
+     "type": "boolean",
+     "default": true,
+     "description": "show the installations behind PATH entries under $HOME read-only (their secrets stay hidden)"
+    }
+   }
+  },
+  "budget": {
+   "type": "object",
+   "description": "ข: what agents may spend (spend.py; docs/sandbox-and-budget.md)",
+   "properties": {
+    "month_usd": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "every agent together: no job starts once this calendar month's spend (local time; reported + estimated) reached it, and a job that starts gets what is left as its cap (claude: dollars; chat, codex: tokens at the higher of their prices); an agent whose prices are both 0 is never stopped by it; null = no cap. Each agent's own: agents.<name>.month_usd / month_tokens, and over every month agents.<name>.total_usd / total_tokens"
+    },
+    "job_usd": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "a job's dollar cap when its agent sets none (claude: --max-budget-usd); null = no cap"
+    },
+    "job_tokens": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "a job's token cap when its agent sets none (chat, codex); null = no cap"
+    }
+   }
+  },
+  "merge": {
+   "type": "object",
+   "description": "ค: merging an adopted trial (or a question's dec/ branch) into the base without switching anyone's checkout (docs/merge.md)",
+   "properties": {
+    "method": {
+     "enum": [
+      "auto",
+      "plumbing",
+      "worktree"
+     ],
+     "default": "auto",
+     "description": "auto: plumbing (merge-tree + commit-tree + update-ref: no checkout touched, no hook runs) when the base is checked out nowhere, else git merge --no-ff in the clean worktree where it is · plumbing: only when the base is checked out nowhere · worktree: always git merge (hooks run), in a temporary worktree under `worktrees` when the base is checked out nowhere"
+    }
+   }
+  }
+ },
+ "$defs": {
+  "chat": {
+   "type": "object",
+   "properties": {
+    "max_steps": {
+     "type": "integer",
+     "default": 80
+    },
+    "max_tokens": {
+     "type": "integer",
+     "default": 4096
+    },
+    "temperature": {
+     "type": "number",
+     "default": 0.2
+    },
+    "command_timeout_s": {
+     "type": "integer",
+     "default": 600
+    },
+    "request_timeout_s": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "default": 600,
+     "description": "how long one request to the model may take, in seconds (default 600); a stop or the job's timeout_s still ends the wait at once. A slow local model needs more (the Orin's llama.cpp server at ~5 tokens/s: 1800); an agent's own request_timeout_s wins"
+    },
+    "sandbox": {
+     "enum": [
+      "bwrap",
+      "none"
+     ],
+     "default": "bwrap"
+    },
+    "deny": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "regular expressions of commands refused before they run"
+    },
+    "context_chars": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "cut old tool results, and the large arguments of old tool calls (a write_file's content), until the conversation fits (small local models)"
+    },
+    "result_chars": {
+     "type": "integer",
+     "default": 12000
+    },
+    "retries": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 8,
+     "description": "how many times an API that says it is busy (429: a rate or quota limit, such as Gemini's free tier of 5 requests a minute; 503: overloaded) is asked again, after the wait it names (Retry-After, RetryInfo) or 5 s doubling up to 60 s, within the job's timeout_s; an agent's own retries wins"
+    },
+    "retry_max_wait_s": {
+     "type": "number",
+     "minimum": 0,
+     "default": 300,
+     "description": "a longer wait than this (a quota for the day) is not waited for: the job ends with the API's answer"
+    }
+   }
+  },
+  "agent": {
+   "type": "object",
+   "properties": {
+    "kind": {
+     "enum": [
+      "claude",
+      "codex",
+      "chat"
+     ]
+    },
+    "label": {
+     "type": "string"
+    },
+    "command": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "claude / codex: the binary; default found on PATH or in the VS Code extension"
+    },
+    "model": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "permission_mode": {
+     "type": "string",
+     "description": "claude: default auto"
+    },
+    "disallowed_tools": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "claude: tools Claude Code may not use. Default: the git commands that change branches, merge or push, sudo / ssh / scp / rsync, and Claude Code's own tools that act outside the job through the account or the web or move it to another worktree: WebSearch, WebFetch, RemoteTrigger, CronCreate, CronDelete, CronList, Workflow, SendMessage, ListAgents, EnterWorktree, ExitWorktree. A list set here replaces the default: copy it and add to it"
+    },
+    "sandbox": {
+     "type": "string",
+     "description": "claude: bwrap (default; when bwrap cannot run here the agent is not available) or none (no sandbox); codex: its own sandbox mode (default workspace-write)"
+    },
+    "network": {
+     "enum": [
+      "proxy",
+      "host",
+      "none"
+     ],
+     "default": "proxy",
+     "description": "claude in bwrap: proxy = only the hosts of network_allow (and Claude Code's own) through dtree's CONNECT proxy; host = the machine's network, its localhost services included; none"
+    },
+    "network_allow": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "default": [],
+     "description": "claude, network proxy: more hosts, added to api.anthropic.com and platform.claude.com: host, .suffix (the domain and every name under it), either with :port (default 443)"
+    },
+    "credentials": {
+     "enum": [
+      "ro",
+      "rw"
+     ],
+     "default": "ro",
+     "description": "claude in bwrap: ~/.claude/.credentials.json read-only, or writable (a long job's token refresh)"
+    },
+    "pass_env": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "claude in bwrap: login variables passed from the runner into the sandbox when set (default ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN); their values go through a private file read by the sandbox's shell, never a command line"
+    },
+    "base_url": {
+     "type": "string",
+     "description": "chat: an OpenAI-compatible API"
+    },
+    "key_env": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "chat: the variable holding the key"
+    },
+    "key_file": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "chat: a file holding the key; read at call time, never logged"
+    },
+    "extra_body": {
+     "type": "object",
+     "description": "chat: a server's own request fields"
+    },
+    "request_timeout_s": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "description": "chat: how long one request to the model may take, in seconds (default chat.request_timeout_s, 600); a slow local model needs more (the Orin: 1800). A job that waits longer fails naming this setting"
+    },
+    "max_steps": {
+     "type": "integer"
+    },
+    "max_tokens": {
+     "type": "integer"
+    },
+    "temperature": {
+     "type": "number"
+    },
+    "command_timeout_s": {
+     "type": "integer"
+    },
+    "context_chars": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "chat: cut old tool results and old tool-call arguments until the conversation fits (default chat.context_chars)"
+    },
+    "result_chars": {
+     "type": "integer"
+    },
+    "rw_paths": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "claude in bwrap: more paths it may write (absolute, ~ allowed; only those that exist)"
+    },
+    "max_budget_usd": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "a job's dollar cap (claude: --max-budget-usd, checked between turns); default budget.job_usd; lowered to what is left of budget.month_usd and of the agent's month_usd / total_usd when the job starts"
+    },
+    "max_tokens_total": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "a job's token cap, in + out (chat, codex); default budget.job_tokens; lowered to what is left of the agent's month_tokens / total_tokens (and of its dollar caps, at the higher of its prices) when the job starts"
+    },
+    "month_usd": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "this agent's dollars in a calendar month (local time; reported + estimated): none of its jobs starts once they reached it, and a job that starts gets what is left as its cap; an agent that reports tokens only (chat, codex) needs price_in_per_mtok / price_out_per_mtok for it, else use month_tokens; it starts again on the 1st, so for a credit use total_usd; 0 = no job this month; null = no cap"
+    },
+    "month_tokens": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "this agent's tokens (in + out, as it reports them; Claude Code's input counts its cached context) in a calendar month: none of its jobs starts once they reached it, and a chat or codex job that starts gets what is left as its token cap; needs no price (an API that reports tokens only, such as Muse's); null = no cap"
+    },
+    "total_usd": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "this agent's dollars over every job of it in this project's store, whatever the month (reported + estimated): a credit, such as Muse's $150 hackathon credit. None of its jobs starts once they reached it, and a job that starts gets what is left as its cap (chat, codex: in tokens, at the higher of its prices); an agent that reports tokens only needs its prices for it, else use total_tokens; 0 = no job; null = no cap"
+    },
+    "total_tokens": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "description": "this agent's tokens over every job of it in this project's store, whatever the month: a credit counted in tokens; needs no price. None of its jobs starts once they reached it, and a chat or codex job that starts gets what is left as its token cap; 0 = no job; null = no cap"
+    },
+    "price_in_per_mtok": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "to estimate the cost of an agent that reports tokens only: dollars per million input tokens"
+    },
+    "price_out_per_mtok": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "dollars per million output tokens (both 0: the agent costs nothing)"
+    },
+    "retries": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "chat: chat.retries for this agent"
+    },
+    "retry_max_wait_s": {
+     "type": "number",
+     "minimum": 0,
+     "description": "chat: chat.retry_max_wait_s for this agent"
+    },
+    "requests_per_minute": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1,
+     "description": "chat: at most this many requests to the model's API in any 60 seconds, shared by every job of this agent (the store counts them, so jobs in several runners are held together; a busy API's retries count too). A request beyond it waits until the oldest of the minute has left the window (the job's log: ⏳ requests_per_minute 5: the next request in 9 s). Gemini's free tier takes 5 requests a minute and 20 a day per model. null = no limit. Claude Code and Codex make their own requests: refused for them"
+    },
+    "requests_per_day": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1,
+     "description": "chat: at most this many requests to the model's API in any 24 hours (a rolling window), shared by every job of this agent: once they are used no job of it starts (refused with code rate), and a running job ends saying when the next request may go (it waits instead when that is within retry_max_wait_s). Gemini's free tier takes 20 requests a day and 5 a minute per model. null = no limit. Claude Code and Codex make their own requests: refused for them"
+    }
+   }
+  }
+ }
+}

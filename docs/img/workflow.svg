@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 600" width="1400" height="600" role="img" aria-label="dtree workflow in four lanes — person, dtree, AI agent, git: a question is asked and stored; the person answers and every agent reads the answer; another option is tried on its own branch; an agent builds it in a sandboxed worktree with caps; dtree verifies the tests on the tip and the base and compares; the person adopts, keeps both or drops; dtree merges without fast-forward and records the commits; done with tests and impact, exported as an ADR">
+  <defs>
+    <marker id="w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9aa3ad"/></marker>
+    <marker id="wg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#22c55e"/></marker>
+    <style>
+      text { font-family: "Segoe UI", "Noto Sans", "Noto Sans Thai", Helvetica, Arial, sans-serif; fill: #e6e8ea; font-size: 13px; }
+      .t { font-size: 15px; font-weight: 600; }
+      .lane { font-size: 13px; font-weight: 600; fill: #9aa3ad; letter-spacing: .06em; }
+      .s { font-size: 11px; fill: #9aa3ad; }
+      .c { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 10px; fill: #9aa3ad; }
+      .n { font-size: 11px; font-weight: 700; fill: #0b0c10; }
+      .p { fill: #1f2833; stroke: #f59e0b; stroke-width: 1.5; rx: 8; }
+      .d { fill: #16202b; stroke: #66fcf1; stroke-width: 1.5; rx: 8; }
+      .a { fill: #1a1f2b; stroke: #a78bfa; stroke-width: 1.5; rx: 8; }
+      .g { fill: #121a16; stroke: #22c55e; stroke-width: 1.5; rx: 8; }
+      .ln { stroke: #9aa3ad; stroke-width: 1.4; fill: none; marker-end: url(#w); }
+      .lg { stroke: #22c55e; stroke-width: 1.6; fill: none; marker-end: url(#wg); }
+      .sep { stroke: #222a35; stroke-width: 1; stroke-dasharray: 3 5; }
+    </style>
+  </defs>
+  <rect width="1400" height="600" fill="#0b0c10"/>
+  <text x="24" y="32" class="t" font-size="18">dtree — the workflow of one question</text>
+  <text x="24" y="52" class="s">agents ask, propose and build · a person answers, chooses and merges · every step is a row in the store</text>
+
+  <!-- lanes -->
+  <line x1="24" y1="70" x2="1376" y2="70" class="sep"/>
+  <text x="24" y="118" class="lane">PERSON</text>
+  <line x1="24" y1="190" x2="1376" y2="190" class="sep"/>
+  <text x="24" y="238" class="lane">DTREE</text>
+  <line x1="24" y1="318" x2="1376" y2="318" class="sep"/>
+  <text x="24" y="366" class="lane">AI AGENT</text>
+  <line x1="24" y1="438" x2="1376" y2="438" class="sep"/>
+  <text x="24" y="486" class="lane">GIT</text>
+  <line x1="24" y1="556" x2="1376" y2="556" class="sep"/>
+
+  <!-- column centres: 205, 387, 569, 751, 933, 1115, 1294 (boxes 170 wide) -->
+  <!-- 1 ask -->
+  <rect x="120" y="86" width="170" height="64" class="p"/>
+  <circle cx="120" cy="86" r="10" fill="#f59e0b"/><text x="120" y="90" text-anchor="middle" class="n">1</text>
+  <text x="205" y="110" text-anchor="middle">asks a question</text>
+  <text x="205" y="127" text-anchor="middle" class="s">page · CLI · an agent (MCP)</text>
+  <text x="205" y="142" text-anchor="middle" class="c">dtree add · dtree_ask</text>
+  <path d="M205,150 L205,206" class="ln"/>
+  <rect x="120" y="206" width="170" height="64" class="d"/>
+  <text x="205" y="230" text-anchor="middle">stored: open</text>
+  <text x="205" y="247" text-anchor="middle" class="s">options, pros/cons, refs;</text>
+  <text x="205" y="262" text-anchor="middle" class="s">hangs on the question named</text>
+
+  <!-- 2 answer -->
+  <rect x="302" y="86" width="170" height="64" class="p"/>
+  <circle cx="302" cy="86" r="10" fill="#f59e0b"/><text x="302" y="90" text-anchor="middle" class="n">2</text>
+  <text x="387" y="110" text-anchor="middle">answers</text>
+  <text x="387" y="127" text-anchor="middle" class="s">one option, with a note</text>
+  <text x="387" y="142" text-anchor="middle" class="c">dtree answer ID OPTION</text>
+  <path d="M387,150 L387,206" class="ln"/>
+  <rect x="302" y="206" width="170" height="64" class="d"/>
+  <text x="387" y="230" text-anchor="middle">decided</text>
+  <text x="387" y="247" text-anchor="middle" class="s">in force for every agent</text>
+  <text x="387" y="262" text-anchor="middle" class="c">dtree context</text>
+  <path d="M387,270 L387,334" class="ln"/>
+  <rect x="302" y="334" width="170" height="56" class="a"/>
+  <text x="387" y="357" text-anchor="middle">reads the decisions</text>
+  <text x="387" y="374" text-anchor="middle" class="s">before any work</text>
+
+  <!-- 3 try -->
+  <rect x="484" y="86" width="170" height="64" class="p"/>
+  <circle cx="484" cy="86" r="10" fill="#f59e0b"/><text x="484" y="90" text-anchor="middle" class="n">3</text>
+  <text x="569" y="110" text-anchor="middle">tries another option</text>
+  <text x="569" y="127" text-anchor="middle" class="s">picks an agent, or several</text>
+  <text x="569" y="142" text-anchor="middle" class="c">dtree try · ai · race</text>
+  <path d="M569,150 L569,206" class="ln"/>
+  <rect x="484" y="206" width="170" height="64" class="d"/>
+  <text x="569" y="230" text-anchor="middle">trial: trying</text>
+  <text x="569" y="247" text-anchor="middle" class="s">own branch and worktree,</text>
+  <text x="569" y="262" text-anchor="middle" class="s">a cap on the job</text>
+  <path d="M569,270 L569,454" class="lg"/>
+  <rect x="484" y="454" width="170" height="56" class="g"/>
+  <text x="569" y="477" text-anchor="middle" class="c">alt/ID-OPTION</text>
+  <text x="569" y="494" text-anchor="middle" class="s">from the base, shadow repo</text>
+
+  <!-- 4 build -->
+  <path d="M654,238 L666,238" class="ln"/>
+  <rect x="666" y="206" width="170" height="64" class="d"/>
+  <text x="751" y="230" text-anchor="middle">runs the job</text>
+  <text x="751" y="247" text-anchor="middle" class="s">bubblewrap, egress proxy,</text>
+  <text x="751" y="262" text-anchor="middle" class="s">rate limits, the budget</text>
+  <path d="M751,270 L751,334" class="ln"/>
+  <rect x="666" y="334" width="170" height="56" class="a"/>
+  <circle cx="666" cy="334" r="10" fill="#a78bfa"/><text x="666" y="338" text-anchor="middle" class="n">4</text>
+  <text x="751" y="357" text-anchor="middle">builds the option</text>
+  <text x="751" y="374" text-anchor="middle" class="s">commits, then measures</text>
+  <path d="M751,390 L751,454" class="lg"/>
+  <rect x="666" y="454" width="170" height="56" class="g"/>
+  <text x="751" y="477" text-anchor="middle" class="c">commits on alt/ID-OPTION</text>
+  <text x="751" y="494" text-anchor="middle" class="s">never merged or pushed</text>
+
+  <!-- 5 verify + compare -->
+  <path d="M836,238 L848,238" class="ln"/>
+  <rect x="848" y="206" width="170" height="64" class="d"/>
+  <circle cx="848" cy="206" r="10" fill="#66fcf1"/><text x="848" y="210" text-anchor="middle" class="n">5</text>
+  <text x="933" y="230" text-anchor="middle">verifies, compares</text>
+  <text x="933" y="247" text-anchor="middle" class="s">own tests on tip and base;</text>
+  <text x="933" y="262" text-anchor="middle" class="s">cost, time, diff, merge-check</text>
+  <path d="M933,206 L933,150" class="ln"/>
+  <rect x="848" y="86" width="170" height="64" class="p"/>
+  <circle cx="848" cy="86" r="10" fill="#f59e0b"/><text x="848" y="90" text-anchor="middle" class="n">6</text>
+  <text x="933" y="110" text-anchor="middle">chooses</text>
+  <text x="933" y="127" text-anchor="middle" class="s">adopt · keep both · drop</text>
+  <text x="933" y="142" text-anchor="middle" class="c">dtree end TRIAL adopted</text>
+
+  <!-- 7 merge + done -->
+  <path d="M1018,118 L1030,118" class="ln"/>
+  <rect x="1030" y="86" width="170" height="64" class="p"/>
+  <circle cx="1030" cy="86" r="10" fill="#f59e0b"/><text x="1030" y="90" text-anchor="middle" class="n">7</text>
+  <text x="1115" y="110" text-anchor="middle">merges and closes</text>
+  <text x="1115" y="127" text-anchor="middle" class="c">dtree merge ID --trial T</text>
+  <text x="1115" y="142" text-anchor="middle" class="c">dtree done ID</text>
+  <path d="M1115,150 L1115,206" class="ln"/>
+  <rect x="1030" y="206" width="170" height="64" class="d"/>
+  <text x="1115" y="230" text-anchor="middle">done</text>
+  <text x="1115" y="247" text-anchor="middle" class="s">tests, impact, commits;</text>
+  <text x="1115" y="262" text-anchor="middle" class="s">an ADR; tokens and dollars</text>
+  <path d="M1115,270 L1115,454" class="lg"/>
+  <rect x="1030" y="454" width="170" height="56" class="g"/>
+  <text x="1115" y="477" text-anchor="middle" class="c">main ← merge --no-ff</text>
+  <text x="1115" y="494" text-anchor="middle" class="s">nobody's checkout switched</text>
+
+  <!-- 8 the tree -->
+  <path d="M1200,238 L1212,238" class="ln"/>
+  <rect x="1212" y="206" width="164" height="64" class="d"/>
+  <text x="1294" y="230" text-anchor="middle">the tree</text>
+  <text x="1294" y="247" text-anchor="middle" class="s">why the code is as it is:</text>
+  <text x="1294" y="262" text-anchor="middle" class="s">history, trials, cost, ADRs</text>
+
+  <text x="24" y="585" class="s">orange = the person · cyan = dtree · violet = an AI agent · green = git — a story (mode story) uses steps 1 and 2 only: scenes, choices, the reader</text>
+</svg>

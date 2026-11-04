@@ -1,0 +1,208 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://dtree.local/schema/question.schema.json",
+ "title": "dtree question (input)",
+ "description": "A question raised for a person to decide: dtree add FILE.json, POST /api/decisions, MCP dtree_ask. คำถามที่ส่งเข้า dtree",
+ "type": "object",
+ "required": [],
+ "properties": {
+  "kind": {
+   "enum": [
+    "decision",
+    "problem"
+   ],
+   "default": "decision",
+   "description": "a choice to make, or a problem noticed / การตัดสินใจ หรือ ปัญหา"
+  },
+  "source": {
+   "enum": [
+    "system",
+    "claude",
+    "user",
+    "agent"
+   ],
+   "description": "who raised it; the CLI gives agent, the page gives user"
+  },
+  "key": {
+   "type": "string",
+   "maxLength": 80,
+   "description": "dedup: the same key while open counts again instead of a new question"
+  },
+  "title_th": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 200
+  },
+  "title_en": {
+   "type": "string",
+   "maxLength": 200,
+   "description": "default: title_th"
+  },
+  "question_th": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 4000
+  },
+  "question_en": {
+   "type": "string",
+   "maxLength": 4000,
+   "description": "default: question_th"
+  },
+  "context_th": {
+   "type": "string",
+   "maxLength": 4000
+  },
+  "context_en": {
+   "type": "string",
+   "maxLength": 4000
+  },
+  "options": {
+   "type": "array",
+   "maxItems": 8,
+   "items": {
+    "$ref": "#/$defs/option"
+   }
+  },
+  "refs": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "documents, gaps, \"#N\" questions; a \"#N\" here grows the tree from question N"
+  },
+  "follows": {
+   "type": "integer",
+   "minimum": 1,
+   "description": "the earlier question this one follows when its text names none"
+  },
+  "follows_how": {
+   "enum": [
+    "topic",
+    "sequence"
+   ],
+   "default": "topic"
+  },
+  "follows_why": {
+   "type": "string",
+   "maxLength": 4000,
+   "description": "required with follows"
+  },
+  "follows_option": {
+   "type": "string",
+   "maxLength": 40,
+   "description": "the key of the earlier question's option this one hangs on (a story: the scene after that choice); needs follows"
+  },
+  "title": {
+   "type": "object",
+   "description": "the words per language: {\"en\": …, \"th\": …, \"ja\": …}; en and th go to their fields, the rest into texts",
+   "additionalProperties": {
+    "type": "string",
+    "maxLength": 200
+   }
+  },
+  "question": {
+   "type": "object",
+   "description": "the words per language: {\"en\": …, \"th\": …, \"ja\": …}; en and th go to their fields, the rest into texts",
+   "additionalProperties": {
+    "type": "string",
+    "maxLength": 4000
+   }
+  },
+  "context": {
+   "type": "object",
+   "description": "the words per language: {\"en\": …, \"th\": …, \"ja\": …}; en and th go to their fields, the rest into texts",
+   "additionalProperties": {
+    "type": "string",
+    "maxLength": 4000
+   }
+  },
+  "texts": {
+   "type": "object",
+   "maxProperties": 20,
+   "description": "words in languages beyond en and th: {\"ja\": {\"title\": …, \"question\": …, \"context\": …}} (codes like ja, pt-BR, zh-Hant)",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "maxLength": 200
+     },
+     "question": {
+      "type": "string",
+      "maxLength": 4000
+     },
+     "context": {
+      "type": "string",
+      "maxLength": 4000
+     }
+    }
+   }
+  }
+ },
+ "$defs": {
+  "option": {
+   "type": "object",
+   "required": [
+    "th"
+   ],
+   "properties": {
+    "key": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 40,
+     "description": "unique in the question; default o1, o2, …; used in branch names"
+    },
+    "th": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "en": {
+     "type": "string",
+     "maxLength": 200
+    },
+    "desc_th": {
+     "type": "string",
+     "maxLength": 4000
+    },
+    "desc_en": {
+     "type": "string",
+     "maxLength": 4000
+    },
+    "recommended": {
+     "type": "boolean",
+     "default": false
+    },
+    "pros": {
+     "type": "array",
+     "maxItems": 10,
+     "items": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+     },
+     "description": "ADR: good, because …"
+    },
+    "cons": {
+     "type": "array",
+     "maxItems": 10,
+     "items": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+     },
+     "description": "ADR: bad, because …"
+    },
+    "texts": {
+     "type": "object",
+     "maxProperties": 20,
+     "description": "the option's words in languages beyond en and th: {\"ja\": \"…\"}",
+     "additionalProperties": {
+      "type": "string",
+      "maxLength": 200
+     }
+    }
+   }
+  }
+ }
+}

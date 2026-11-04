@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opendtree"
+version = "0.1.0"
+description = "OpenDtree (command: dtree) — a decision tree for people and AI agents: questions, options, trials on git branches, and agents (Claude Code, Codex, Muse, Grok, local models) that build them"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+dtree = "dtree.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dtree = ["static/*.html", "static/lang/*.json", "static/lang/*.md", "schema/*.json"]

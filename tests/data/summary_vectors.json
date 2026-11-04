@@ -1,0 +1,1482 @@
+[
+ {
+  "name": "pytest_mixed_default",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_mixed\nconfigfile: pytest.ini\ncollected 11 items / 1 deselected / 10 selected\n\ntest_mixed.py ....FEssxX                                                 [100%]\n\n==================================== ERRORS ====================================\n_________________________ ERROR at setup of test_error _________________________\n\n    @pytest.fixture\n    def broken():\n>       raise RuntimeError(\"fixture setup failed\")\nE       RuntimeError: fixture setup failed\n\ntest_mixed.py:8: RuntimeError\n=================================== FAILURES ===================================\n__________________________________ test_fail ___________________________________\n\n    def test_fail():\n>       assert 2 * 2 == 5\nE       assert (2 * 2) == 5\n\ntest_mixed.py:28: AssertionError\n=============================== warnings summary ===============================\ntest_mixed.py::test_pass_warns\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\n    warnings.warn(\"old api\", UserWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_mixed.py::test_fail - assert (2 * 2) == 5\nERROR test_mixed.py::test_error - RuntimeError: fixture setup failed\n= 1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.02s =\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 1,
+   "skipped": 2,
+   "xfailed": 1,
+   "xpassed": 1,
+   "total": 10,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "= 1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.02s ="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest -m 'not slow'"
+ },
+ {
+  "name": "pytest_mixed_q",
+  "framework": "pytest",
+  "real": true,
+  "text": "....FEssxX                                                               [100%]\n==================================== ERRORS ====================================\n_________________________ ERROR at setup of test_error _________________________\n\n    @pytest.fixture\n    def broken():\n>       raise RuntimeError(\"fixture setup failed\")\nE       RuntimeError: fixture setup failed\n\ntest_mixed.py:8: RuntimeError\n=================================== FAILURES ===================================\n__________________________________ test_fail ___________________________________\n\n    def test_fail():\n>       assert 2 * 2 == 5\nE       assert (2 * 2) == 5\n\ntest_mixed.py:28: AssertionError\n=============================== warnings summary ===============================\ntest_mixed.py::test_pass_warns\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\n    warnings.warn(\"old api\", UserWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_mixed.py::test_fail - assert (2 * 2) == 5\nERROR test_mixed.py::test_error - RuntimeError: fixture setup failed\n1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.02s\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 1,
+   "skipped": 2,
+   "xfailed": 1,
+   "xpassed": 1,
+   "total": 10,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.02s"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest -q -m 'not slow'"
+ },
+ {
+  "name": "pytest_mixed_color",
+  "framework": "pytest",
+  "real": true,
+  "text": "\u001b[1m============================= test session starts ==============================\u001b[0m\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_mixed\nconfigfile: pytest.ini\ncollected 11 items / 1 deselected / 10 selected\n\ntest_mixed.py \u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[31mF\u001b[0m\u001b[31mE\u001b[0m\u001b[33ms\u001b[0m\u001b[33ms\u001b[0m\u001b[33mx\u001b[0m\u001b[33mX\u001b[0m\u001b[31m                                                 [100%]\u001b[0m\n\n==================================== ERRORS ====================================\n\u001b[31m\u001b[1m_________________________ ERROR at setup of test_error _________________________\u001b[0m\n\n    \u001b[0m\u001b[37m@pytest\u001b[39;49;00m.fixture\u001b[90m\u001b[39;49;00m\n    \u001b[94mdef\u001b[39;49;00m\u001b[90m \u001b[39;49;00m\u001b[92mbroken\u001b[39;49;00m():\u001b[90m\u001b[39;49;00m\n>       \u001b[94mraise\u001b[39;49;00m \u001b[96mRuntimeError\u001b[39;49;00m(\u001b[33m\"\u001b[39;49;00m\u001b[33mfixture setup failed\u001b[39;49;00m\u001b[33m\"\u001b[39;49;00m)\u001b[90m\u001b[39;49;00m\n\u001b[1m\u001b[31mE       RuntimeError: fixture setup failed\u001b[0m\n\n\u001b[1m\u001b[31mtest_mixed.py\u001b[0m:8: RuntimeError\n=================================== FAILURES ===================================\n\u001b[31m\u001b[1m__________________________________ test_fail ___________________________________\u001b[0m\n\n    \u001b[0m\u001b[94mdef\u001b[39;49;00m\u001b[90m \u001b[39;49;00m\u001b[92mtest_fail\u001b[39;49;00m():\u001b[90m\u001b[39;49;00m\n>       \u001b[94massert\u001b[39;49;00m \u001b[94m2\u001b[39;49;00m * \u001b[94m2\u001b[39;49;00m == \u001b[94m5\u001b[39;49;00m\u001b[90m\u001b[39;49;00m\n\u001b[1m\u001b[31mE       assert (2 * 2) == 5\u001b[0m\n\n\u001b[1m\u001b[31mtest_mixed.py\u001b[0m:28: AssertionError\n\u001b[33m=============================== warnings summary ===============================\u001b[0m\ntest_mixed.py::test_pass_warns\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\n    warnings.warn(\"old api\", UserWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n\u001b[36m\u001b[1m=========================== short test summary info ============================\u001b[0m\n\u001b[31mFAILED\u001b[0m test_mixed.py::\u001b[1mtest_fail\u001b[0m - assert (2 * 2) == 5\n\u001b[31mERROR\u001b[0m test_mixed.py::\u001b[1mtest_error\u001b[0m - RuntimeError: fixture setup failed\n\u001b[31m= \u001b[31m\u001b[1m1 failed\u001b[0m, \u001b[32m4 passed\u001b[0m, \u001b[33m2 skipped\u001b[0m, \u001b[33m1 deselected\u001b[0m, \u001b[33m1 xfailed\u001b[0m, \u001b[33m1 xpassed\u001b[0m, \u001b[33m1 warning\u001b[0m, \u001b[31m\u001b[1m1 error\u001b[0m\u001b[31m in 0.04s\u001b[0m\u001b[31m =\u001b[0m\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 1,
+   "skipped": 2,
+   "xfailed": 1,
+   "xpassed": 1,
+   "total": 10,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "= 1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.04s ="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest --color=yes -m 'not slow'"
+ },
+ {
+  "name": "pytest_mixed_qq_no_summary",
+  "framework": "pytest",
+  "real": true,
+  "text": "....FEssxX                                                               [100%]\n==================================== ERRORS ====================================\n_________________________ ERROR at setup of test_error _________________________\n\n    @pytest.fixture\n    def broken():\n>       raise RuntimeError(\"fixture setup failed\")\nE       RuntimeError: fixture setup failed\n\ntest_mixed.py:8: RuntimeError\n=================================== FAILURES ===================================\n__________________________________ test_fail ___________________________________\n\n    def test_fail():\n>       assert 2 * 2 == 5\nE       assert (2 * 2) == 5\n\ntest_mixed.py:28: AssertionError\n=============================== warnings summary ===============================\ntest_mixed.py::test_pass_warns\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\n    warnings.warn(\"old api\", UserWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_mixed.py::test_fail - assert (2 * 2) == 5\nERROR test_mixed.py::test_error - RuntimeError: fixture setup failed\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": false,
+   "summary_line": null
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest -qq -m 'not slow'"
+ },
+ {
+  "name": "pytest_mixed_x_stop_first",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_mixed\nconfigfile: pytest.ini\ncollected 11 items / 1 deselected / 10 selected\n\ntest_mixed.py ....F\n\n=================================== FAILURES ===================================\n__________________________________ test_fail ___________________________________\n\n    def test_fail():\n>       assert 2 * 2 == 5\nE       assert (2 * 2) == 5\n\ntest_mixed.py:28: AssertionError\n=============================== warnings summary ===============================\ntest_mixed.py::test_pass_warns\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\n    warnings.warn(\"old api\", UserWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_mixed.py::test_fail - assert (2 * 2) == 5\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n============= 1 failed, 4 passed, 1 deselected, 1 warning in 0.02s =============\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "============= 1 failed, 4 passed, 1 deselected, 1 warning in 0.02s ============="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest -x -m 'not slow'"
+ },
+ {
+  "name": "pytest_pass_q",
+  "framework": "pytest",
+  "real": true,
+  "text": ".....                                                                    [100%]\n5 passed in 0.01s\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 5,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "5 passed in 0.01s"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest -q"
+ },
+ {
+  "name": "pytest_collection_error",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_collect_err\nconfigfile: pytest.ini\ncollected 2 items / 1 error\n\n==================================== ERRORS ====================================\n_______________________ ERROR collecting test_broken.py ________________________\nImportError while importing test module '<scratch>/projects/pytest_collect_err/test_broken.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n~/miniforge3/envs/ut/lib/python3.12/importlib/__init__.py:90: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntest_broken.py:1: in <module>\n    import not_a_real_module_xyz  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   ModuleNotFoundError: No module named 'not_a_real_module_xyz'\n=========================== short test summary info ============================\nERROR test_broken.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n=============================== 1 error in 0.07s ===============================\n",
+  "exit_code": 2,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 1,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "=============================== 1 error in 0.07s ==============================="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest"
+ },
+ {
+  "name": "pytest_collection_error_continue",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_collect_err\nconfigfile: pytest.ini\ncollected 2 items / 1 error\n\ntest_good.py ..                                                          [100%]\n\n==================================== ERRORS ====================================\n_______________________ ERROR collecting test_broken.py ________________________\nImportError while importing test module '<scratch>/projects/pytest_collect_err/test_broken.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n~/miniforge3/envs/ut/lib/python3.12/importlib/__init__.py:90: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntest_broken.py:1: in <module>\n    import not_a_real_module_xyz  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   ModuleNotFoundError: No module named 'not_a_real_module_xyz'\n=========================== short test summary info ============================\nERROR test_broken.py\n========================== 2 passed, 1 error in 0.01s ==========================\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 3,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "========================== 2 passed, 1 error in 0.01s =========================="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest --continue-on-collection-errors"
+ },
+ {
+  "name": "pytest_no_tests",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_empty\nconfigfile: pytest.ini\ncollected 0 items\n\n============================ no tests ran in 0.00s =============================\n",
+  "exit_code": 5,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 0,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "============================ no tests ran in 0.00s ============================="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest"
+ },
+ {
+  "name": "pytest_teardown_error",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_teardown\nconfigfile: pytest.ini\ncollected 2 items\n\ntest_td.py .E.                                                           [100%]\n\n==================================== ERRORS ====================================\n______________________ ERROR at teardown of test_uses_res ______________________\n\n    @pytest.fixture\n    def res():\n        yield 1\n>       raise RuntimeError(\"teardown failed\")\nE       RuntimeError: teardown failed\n\ntest_td.py:7: RuntimeError\n=========================== short test summary info ============================\nERROR test_td.py::test_uses_res - RuntimeError: teardown failed\n========================== 2 passed, 1 error in 0.01s ==========================\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 3,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "========================== 2 passed, 1 error in 0.01s =========================="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest"
+ },
+ {
+  "name": "pytest_subtests",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_subtests\nconfigfile: pytest.ini\ncollected 2 items\n\ntest_sub.py uuF.                                                         [100%]\n\n=================================== FAILURES ===================================\n_______________________ test_with_subtests [even] (i=1) ________________________\n\nsubtests = <_pytest.subtests.Subtests object at 0x7e0cfedb1190>\n\n    def test_with_subtests(subtests):\n        for i in range(4):\n            with subtests.test(msg=\"even\", i=i):\n>               assert i % 2 == 0\nE               assert (1 % 2) == 0\n\ntest_sub.py:4: AssertionError\n_______________________ test_with_subtests [even] (i=3) ________________________\n\nsubtests = <_pytest.subtests.Subtests object at 0x7e0cfedb1190>\n\n    def test_with_subtests(subtests):\n        for i in range(4):\n            with subtests.test(msg=\"even\", i=i):\n>               assert i % 2 == 0\nE               assert (3 % 2) == 0\n\ntest_sub.py:4: AssertionError\n______________________________ test_with_subtests ______________________________\ncontains 2 failed subtests\n=========================== short test summary info ============================\nSUBFAILED[even] (i=1) test_sub.py::test_with_subtests - assert (1 % 2) == 0\nSUBFAILED[even] (i=3) test_sub.py::test_with_subtests - assert (3 % 2) == 0\nFAILED test_sub.py::test_with_subtests - contains 2 failed subtests\n========================= 3 failed, 1 passed in 0.02s ==========================\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 1,
+   "failed": 3,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 4,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "========================= 3 failed, 1 passed in 0.02s =========================="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest"
+ },
+ {
+  "name": "pytest_keyboard_interrupt",
+  "framework": "pytest",
+  "real": true,
+  "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: <scratch>/projects/pytest_kbint\nconfigfile: pytest.ini\ncollected 3 items\n\ntest_kb.py .\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n<scratch>/projects/pytest_kbint/test_kb.py:6: KeyboardInterrupt\n(to show a full traceback on KeyboardInterrupt use --full-trace)\n============================== 1 passed in 0.14s ===============================\n",
+  "exit_code": 2,
+  "expected": {
+   "passed": 1,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 1,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "============================== 1 passed in 0.14s ==============================="
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m pytest"
+ },
+ {
+  "name": "pytest_two_runs_last_wins",
+  "framework": "pytest",
+  "real": true,
+  "text": "....FEssxX                                                               [100%]\n==================================== ERRORS ====================================\n_________________________ ERROR at setup of test_error _________________________\n\n    @pytest.fixture\n    def broken():\n>       raise RuntimeError(\"fixture setup failed\")\nE       RuntimeError: fixture setup failed\n\ntest_mixed.py:8: RuntimeError\n=================================== FAILURES ===================================\n__________________________________ test_fail ___________________________________\n\n    def test_fail():\n>       assert 2 * 2 == 5\nE       assert (2 * 2) == 5\n\ntest_mixed.py:28: AssertionError\n=============================== warnings summary ===============================\ntest_mixed.py::test_pass_warns\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\n    warnings.warn(\"old api\", UserWarning)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_mixed.py::test_fail - assert (2 * 2) == 5\nERROR test_mixed.py::test_error - RuntimeError: fixture setup failed\n1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.02s\n.....                                                                    [100%]\n5 passed in 0.01s\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 5,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "5 passed in 0.01s"
+  },
+  "cmd": "bash -c \"cd pytest_mixed && ~/miniforge3/envs/ut/bin/python -m pytest -q -m 'not slow'; cd ../pytest_pass && ~/miniforge3/envs/ut/bin/python -m pytest -q\""
+ },
+ {
+  "name": "unittest_pass",
+  "framework": "unittest",
+  "real": true,
+  "text": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 3,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 3,
+   "framework": "unittest",
+   "ok": true,
+   "summary_line": "Ran 3 tests in 0.000s / OK"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_skip",
+  "framework": "unittest",
+  "real": true,
+  "text": ".ss\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK (skipped=2)\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 1,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 3,
+   "framework": "unittest",
+   "ok": true,
+   "summary_line": "Ran 3 tests in 0.000s / OK (skipped=2)"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_mixed",
+  "framework": "unittest",
+  "real": true,
+  "text": "EEF..sssxu\n======================================================================\nERROR: test_error1 (test_mixed.T.test_error1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 15, in test_error1\n    raise ValueError(\"boom\")\nValueError: boom\n\n======================================================================\nERROR: test_error2 (test_mixed.T.test_error2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 18, in test_error2\n    {}[\"missing\"]\n    ~~^^^^^^^^^^^\nKeyError: 'missing'\n\n======================================================================\nFAIL: test_fail (test_mixed.T.test_fail)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 12, in test_fail\n    self.assertEqual(1, 2)\nAssertionError: 1 != 2\n\n======================================================================\nUNEXPECTED SUCCESS: test_xpass (test_mixed.T.test_xpass)\n----------------------------------------------------------------------\nRan 10 tests in 0.001s\n\nFAILED (failures=1, errors=2, skipped=3, expected failures=1, unexpected successes=1)\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 2,
+   "skipped": 3,
+   "xfailed": 1,
+   "xpassed": 1,
+   "total": 10,
+   "framework": "unittest",
+   "ok": false,
+   "summary_line": "Ran 10 tests in 0.001s / FAILED (failures=1, errors=2, skipped=3, expected failures=1, unexpected successes=1)"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_mixed_verbose",
+  "framework": "unittest",
+  "real": true,
+  "text": "test_error1 (test_mixed.T.test_error1) ... ERROR\ntest_error2 (test_mixed.T.test_error2) ... ERROR\ntest_fail (test_mixed.T.test_fail) ... FAIL\ntest_pass (test_mixed.T.test_pass) ... ok\ntest_pass2 (test_mixed.T.test_pass2) ... ok\ntest_skip1 (test_mixed.T.test_skip1) ... skipped 'later'\ntest_skip2 (test_mixed.T.test_skip2) ... skipped 'later'\ntest_skip3 (test_mixed.T.test_skip3) ... skipped 'runtime skip'\ntest_xfail (test_mixed.T.test_xfail) ... expected failure\ntest_xpass (test_mixed.T.test_xpass) ... unexpected success\n\n======================================================================\nERROR: test_error1 (test_mixed.T.test_error1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 15, in test_error1\n    raise ValueError(\"boom\")\nValueError: boom\n\n======================================================================\nERROR: test_error2 (test_mixed.T.test_error2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 18, in test_error2\n    {}[\"missing\"]\n    ~~^^^^^^^^^^^\nKeyError: 'missing'\n\n======================================================================\nFAIL: test_fail (test_mixed.T.test_fail)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 12, in test_fail\n    self.assertEqual(1, 2)\nAssertionError: 1 != 2\n\n======================================================================\nUNEXPECTED SUCCESS: test_xpass (test_mixed.T.test_xpass)\n----------------------------------------------------------------------\nRan 10 tests in 0.001s\n\nFAILED (failures=1, errors=2, skipped=3, expected failures=1, unexpected successes=1)\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 2,
+   "skipped": 3,
+   "xfailed": 1,
+   "xpassed": 1,
+   "total": 10,
+   "framework": "unittest",
+   "ok": false,
+   "summary_line": "Ran 10 tests in 0.001s / FAILED (failures=1, errors=2, skipped=3, expected failures=1, unexpected successes=1)"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest -v"
+ },
+ {
+  "name": "unittest_no_tests_py312",
+  "framework": "unittest",
+  "real": true,
+  "text": "\n----------------------------------------------------------------------\nRan 0 tests in 0.000s\n\nNO TESTS RAN\n",
+  "exit_code": 5,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 0,
+   "framework": "unittest",
+   "ok": false,
+   "summary_line": "Ran 0 tests in 0.000s / NO TESTS RAN"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_no_tests_py39",
+  "framework": "unittest",
+  "real": true,
+  "text": "\n----------------------------------------------------------------------\nRan 0 tests in 0.000s\n\nOK\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 0,
+   "framework": "unittest",
+   "ok": true,
+   "summary_line": "Ran 0 tests in 0.000s / OK"
+  },
+  "cmd": "~/miniforge3/envs/ut-habitat39/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_import_error",
+  "framework": "unittest",
+  "real": true,
+  "text": "E\n======================================================================\nERROR: test_broken (unittest.loader._FailedTest.test_broken)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_broken\nTraceback (most recent call last):\n  File \"~/miniforge3/envs/ut/lib/python3.12/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"~/miniforge3/envs/ut/lib/python3.12/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n  File \"<scratch>/projects/ut_import_error/test_broken.py\", line 1, in <module>\n    import not_a_real_module_xyz  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'not_a_real_module_xyz'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 1,
+   "framework": "unittest",
+   "ok": false,
+   "summary_line": "Ran 1 test in 0.000s / FAILED (errors=1)"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_subtests",
+  "framework": "unittest",
+  "real": true,
+  "text": "FFF\n======================================================================\nFAIL: test_subs (test_sub.T.test_subs) (i=1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_subtests/test_sub.py\", line 8, in test_subs\n    self.assertEqual(i, 0)\nAssertionError: 1 != 0\n\n======================================================================\nFAIL: test_subs (test_sub.T.test_subs) (i=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_subtests/test_sub.py\", line 8, in test_subs\n    self.assertEqual(i, 0)\nAssertionError: 2 != 0\n\n======================================================================\nFAIL: test_subs (test_sub.T.test_subs) (i=3)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_subtests/test_sub.py\", line 8, in test_subs\n    self.assertEqual(i, 0)\nAssertionError: 3 != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=3)\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 0,
+   "failed": 3,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 1,
+   "framework": "unittest",
+   "ok": false,
+   "summary_line": "Ran 1 test in 0.000s / FAILED (failures=3)"
+  },
+  "cmd": "~/miniforge3/envs/ut/bin/python -m unittest"
+ },
+ {
+  "name": "unittest_two_runs_last_wins",
+  "framework": "unittest",
+  "real": true,
+  "text": "EEF..sssxu\n======================================================================\nERROR: test_error1 (test_mixed.T.test_error1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 15, in test_error1\n    raise ValueError(\"boom\")\nValueError: boom\n\n======================================================================\nERROR: test_error2 (test_mixed.T.test_error2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 18, in test_error2\n    {}[\"missing\"]\n    ~~^^^^^^^^^^^\nKeyError: 'missing'\n\n======================================================================\nFAIL: test_fail (test_mixed.T.test_fail)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<scratch>/projects/ut_mixed/test_mixed.py\", line 12, in test_fail\n    self.assertEqual(1, 2)\nAssertionError: 1 != 2\n\n======================================================================\nUNEXPECTED SUCCESS: test_xpass (test_mixed.T.test_xpass)\n----------------------------------------------------------------------\nRan 10 tests in 0.001s\n\nFAILED (failures=1, errors=2, skipped=3, expected failures=1, unexpected successes=1)\n...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 3,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 3,
+   "framework": "unittest",
+   "ok": true,
+   "summary_line": "Ran 3 tests in 0.000s / OK"
+  },
+  "cmd": "bash -c 'cd ut_mixed && ~/miniforge3/envs/ut/bin/python -m unittest; cd ../ut_pass && ~/miniforge3/envs/ut/bin/python -m unittest'"
+ },
+ {
+  "name": "mocha_mixed",
+  "framework": "mocha",
+  "real": true,
+  "text": "\n\n  math\n    ✔ adds\n    ✔ multiplies\n    ✔ subtracts\n    1) divides wrong\n    - skipped one\n    - pending without body\n\n\n  3 passing (3ms)\n  2 pending\n  1 failing\n\n  1) math\n       divides wrong:\n\n      AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2 !== 3\n\n      + expected - actual\n\n      -2\n      +3\n      \n      at Context.<anonymous> (test/mixed.spec.js:7:44)\n      at process.processImmediate (node:internal/timers:484:21)\n\n\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 3,
+   "failed": 1,
+   "errors": null,
+   "skipped": 2,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 6,
+   "framework": "mocha",
+   "ok": false,
+   "summary_line": "3 passing (3ms) / 2 pending / 1 failing"
+  },
+  "cmd": "node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js"
+ },
+ {
+  "name": "mocha_pass",
+  "framework": "mocha",
+  "real": true,
+  "text": "\n\n  strings\n    ✔ upper\n    ✔ trim\n\n\n  2 passing (2ms)\n\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": null,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 2,
+   "framework": "mocha",
+   "ok": true,
+   "summary_line": "2 passing (2ms)"
+  },
+  "cmd": "node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js"
+ },
+ {
+  "name": "mocha_hook_failure",
+  "framework": "mocha",
+  "real": true,
+  "text": "\n\n  db\n    1) \"before all\" hook for \"reads\"\n\n  plain\n    ✔ works\n\n\n  1 passing (3ms)\n  1 failing\n\n  1) db\n       \"before all\" hook for \"reads\":\n     Error: cannot connect\n      at Context.<anonymous> (test/hook.spec.js:4:30)\n      at process.processImmediate (node:internal/timers:484:21)\n\n\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 1,
+   "failed": 1,
+   "errors": null,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 2,
+   "framework": "mocha",
+   "ok": false,
+   "summary_line": "1 passing (3ms) / 1 failing"
+  },
+  "cmd": "node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js"
+ },
+ {
+  "name": "mocha_no_test_files",
+  "framework": "mocha",
+  "real": true,
+  "text": "\u001b[31mError: No test files found: \"test\"\u001b[39m\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": null,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 0,
+   "framework": "mocha",
+   "ok": false,
+   "summary_line": "Error: No test files found: \"test\""
+  },
+  "cmd": "node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js"
+ },
+ {
+  "name": "mocha_tap_reporter",
+  "framework": "mocha",
+  "real": true,
+  "text": "ok 1 math adds\nok 2 math multiplies\nok 3 math subtracts\nnot ok 4 math divides wrong\n  Expected values to be strictly equal:\n  \n  2 !== 3\n  \n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  2 !== 3\n  \n      at Context.<anonymous> (test/mixed.spec.js:7:44)\n      at process.processImmediate (node:internal/timers:484:21)\nok 5 math skipped one # SKIP -\nok 6 math pending without body # SKIP -\n# tests 4\n# pass 3\n# fail 1\n1..6\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 3,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 6,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "1..6"
+  },
+  "cmd": "node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js --reporter tap"
+ },
+ {
+  "name": "mocha_dot_reporter",
+  "framework": "mocha",
+  "real": true,
+  "text": "\n\n  ...!,,\n\n  3 passing (3ms)\n  2 pending\n  1 failing\n\n  1) math\n       divides wrong:\n\n      AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2 !== 3\n\n      + expected - actual\n\n      -2\n      +3\n      \n      at Context.<anonymous> (test/mixed.spec.js:7:44)\n      at process.processImmediate (node:internal/timers:484:21)\n\n\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 3,
+   "failed": 1,
+   "errors": null,
+   "skipped": 2,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 6,
+   "framework": "mocha",
+   "ok": false,
+   "summary_line": "3 passing (3ms) / 2 pending / 1 failing"
+  },
+  "cmd": "node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js --reporter dot"
+ },
+ {
+  "name": "vitest4_mixed",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v4.1.11 <scratch>/projects/vitest_mixed\n\n ❯ mixed.test.js (6 tests | 1 failed | 1 skipped | 1 todo) 8ms\n     × divides wrong 5ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  mixed.test.js > math > divides wrong\nAssertionError: expected 2 to be 3 // Object.is equality\n\n- Expected\n+ Received\n\n- 3\n+ 2\n\n ❯ mixed.test.js:4:47\n      2|   test('adds', () => { expect(1 + 1).toBe(2) })\n      3|   test('multiplies', () => { expect(2 * 3).toBe(6) })\n      4|   test('divides wrong', () => { expect(6 / 3).toBe(3) })\n       |                                               ^\n      5|   test.skip('skipped', () => {})\n      6|   test.todo('todo later')\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 2 passed | 1 expected fail | 1 skipped | 1 todo (6)\n   Start at  22:21:06\n   Duration  144ms (transform 17ms, setup 0ms, import 25ms, tests 8ms, environment 0ms)\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": 1,
+   "xpassed": null,
+   "total": 6,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  1 failed | 2 passed | 1 expected fail | 1 skipped | 1 todo (6)"
+  },
+  "cmd": "node ~/projects/Margent/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest4_pass",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v4.1.11 <scratch>/projects/vitest_pass\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  22:21:07\n   Duration  118ms (transform 10ms, setup 0ms, import 16ms, tests 3ms, environment 0ms)\n\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 2,
+   "framework": "vitest",
+   "ok": true,
+   "summary_line": "Tests  2 passed (2)"
+  },
+  "cmd": "node ~/projects/Margent/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest4_broken_file",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v4.1.11 <scratch>/projects/vitest_broken\n\n ❯ broken.test.js (0 test)\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  broken.test.js [ broken.test.js ]\nError: Cannot find module './does-not-exist.js' imported from <scratch>/projects/vitest_broken/broken.test.js\n ❯ broken.test.js:1:1\n      1| import { nothing } from './does-not-exist.js'\n       | ^\n      2| test('never', () => { expect(nothing).toBe(1) })\n      3|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed | 1 passed (2)\n      Tests  2 passed (2)\n   Start at  22:21:07\n   Duration  125ms (transform 28ms, setup 0ms, import 18ms, tests 3ms, environment 0ms)\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 2,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  2 passed (2)"
+  },
+  "cmd": "node ~/projects/Margent/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest4_unhandled_error",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v4.1.11 <scratch>/projects/vitest_unhandled\n\n⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯\n\nVitest caught 1 unhandled error during the test run.\nThis might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.\n\n⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯\nError: late boom\n ❯ Timeout._onTimeout late.test.js:2:28\n      1| test('passes but leaves a late error', async () => {\n      2|   setTimeout(() => { throw new Error('late boom') }, 0)\n       |                            ^\n      3|   await new Promise((r) => setTimeout(r, 20))\n      4|   expect(1).toBe(1)\n ❯ listOnTimeout node:internal/timers:585:17\n ❯ processTimers node:internal/timers:521:7\n\nThis error originated in \"late.test.js\" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.\nThe latest test that might've caused the error is \"passes but leaves a late error\". It might mean one of the following:\n- The error was thrown, while Vitest was running this test.\n- If the error occurred after the test had been completed, this was the last documented test before it was thrown.\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n     Errors  1 error\n   Start at  22:21:08\n   Duration  136ms (transform 11ms, setup 0ms, import 17ms, tests 23ms, environment 0ms)\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 2,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  2 passed (2)"
+  },
+  "cmd": "node ~/projects/Margent/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest4_no_test_files",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v4.1.11 <scratch>/projects/vitest_empty\n\nNo test files found, exiting with code 1\n\ninclude: **/*.{test,spec}.?(c|m)[jt]s?(x)\nexclude:  **/node_modules/**, **/.git/**\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 0,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "No test files found, exiting with code 1"
+  },
+  "cmd": "node ~/projects/Margent/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest3_mixed",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v3.2.4 <scratch>/projects/vitest_mixed\n\n ❯ mixed.test.js (6 tests | 1 failed | 2 skipped) 8ms\n   ✓ math > adds 1ms\n   ✓ math > multiplies 0ms\n   × math > divides wrong 5ms\n     → expected 2 to be 3 // Object.is equality\n   ↓ math > skipped\n   ↓ math > todo later\n   ✓ math > expected to fail 1ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  mixed.test.js > math > divides wrong\nAssertionError: expected 2 to be 3 // Object.is equality\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- 3\u001b[39m\n\u001b[31m+ 2\u001b[39m\n\n ❯ mixed.test.js:4:47\n      2|   test('adds', () => { expect(1 + 1).toBe(2) })\n      3|   test('multiplies', () => { expect(2 * 3).toBe(6) })\n      4|   test('divides wrong', () => { expect(6 / 3).toBe(3) })\n       |                                               ^\n      5|   test.skip('skipped', () => {})\n      6|   test.todo('todo later')\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 3 passed | 1 skipped | 1 todo (6)\n   Start at  22:21:08\n   Duration  323ms (transform 34ms, setup 0ms, collect 4ms, tests 8ms, environment 0ms, prepare 109ms)\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 3,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 6,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  1 failed | 3 passed | 1 skipped | 1 todo (6)"
+  },
+  "cmd": "node ~/projects/pixel-agents/server/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest3_broken_file",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v3.2.4 <scratch>/projects/vitest_broken\n\n ✓ ok.test.js (2 tests) 2ms\n\n⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  broken.test.js [ broken.test.js ]\nError: Cannot find module './does-not-exist.js' imported from '<scratch>/projects/vitest_broken/broken.test.js'\n ❯ broken.test.js:1:1\n      1| import { nothing } from './does-not-exist.js'\n       | ^\n      2| test('never', () => { expect(nothing).toBe(1) })\n      3| \n\nCaused by: Error: Failed to load url ./does-not-exist.js (resolved id: ./does-not-exist.js) in <scratch>/projects/vitest_broken/broken.test.js. Does the file exist?\n ❯ loadAndTransform ../../../../../../../../..~/projects/pixel-agents/server/node_modules/vite/dist/node/chunks/config.js:22663:33\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed | 1 passed (2)\n      Tests  2 passed (2)\n   Start at  22:21:09\n   Duration  308ms (transform 41ms, setup 0ms, collect 3ms, tests 2ms, environment 0ms, prepare 188ms)\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 2,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  2 passed (2)"
+  },
+  "cmd": "node ~/projects/pixel-agents/server/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "vitest3_unhandled_error",
+  "framework": "vitest",
+  "real": true,
+  "text": "\n RUN  v3.2.4 <scratch>/projects/vitest_unhandled\n\n ✓ late.test.js (2 tests) 23ms\n⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯\n\nVitest caught 1 unhandled error during the test run.\nThis might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.\n\n⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯\nError: late boom\n ❯ Timeout._onTimeout late.test.js:2:28\n      1| test('passes but leaves a late error', async () => {\n      2|   setTimeout(() => { throw new Error('late boom') }, 0)\n       |                            ^\n      3|   await new Promise((r) => setTimeout(r, 20))\n      4|   expect(1).toBe(1)\n ❯ listOnTimeout node:internal/timers:585:17\n ❯ processTimers node:internal/timers:521:7\n\nThis error originated in \"late.test.js\" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.\nThe latest test that might've caused the error is \"passes but leaves a late error\". It might mean one of the following:\n- The error was thrown, while Vitest was running this test.\n- If the error occurred after the test had been completed, this was the last documented test before it was thrown.\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n     Errors  1 error\n   Start at  22:21:10\n   Duration  427ms (transform 43ms, setup 0ms, collect 6ms, tests 23ms, environment 0ms, prepare 140ms)\n\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": null,
+   "total": 2,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  2 passed (2)"
+  },
+  "cmd": "node ~/projects/pixel-agents/server/node_modules/vitest/vitest.mjs run --globals"
+ },
+ {
+  "name": "node_test_tap_reporter",
+  "framework": "node:test",
+  "real": true,
+  "text": "TAP version 13\n# Subtest: passes\nok 1 - passes\n  ---\n  duration_ms: 0.680839\n  type: 'test'\n  ...\n# Subtest: fails\nnot ok 2 - fails\n  ---\n  duration_ms: 0.661651\n  type: 'test'\n  location: '<scratch>/projects/tap_node/basic.test.mjs:5:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    1 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 1\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file://<scratch>/projects/tap_node/basic.test.mjs:5:30)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:744:18)\n    Test.postRun (node:internal/test_runner/test:1173:19)\n    Test.run (node:internal/test_runner/test:1101:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)\n  ...\n# Subtest: skipped\nok 3 - skipped # SKIP not now\n  ---\n  duration_ms: 0.084708\n  type: 'test'\n  ...\n# Subtest: todo failing\nnot ok 4 - todo failing # TODO later\n  ---\n  duration_ms: 0.180651\n  type: 'test'\n  location: '<scratch>/projects/tap_node/basic.test.mjs:7:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    1 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 1\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file://<scratch>/projects/tap_node/basic.test.mjs:7:56)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:744:18)\n    Test.postRun (node:internal/test_runner/test:1173:19)\n    Test.run (node:internal/test_runner/test:1101:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: parent\n    # Subtest: child ok\n    ok 1 - child ok\n      ---\n      duration_ms: 0.67096\n      type: 'test'\n      ...\n    # Subtest: child ok 2\n    ok 2 - child ok 2\n      ---\n      duration_ms: 0.099587\n      type: 'test'\n      ...\n    1..2\nok 5 - parent\n  ---\n  duration_ms: 1.195135\n  type: 'test'\n  ...\n1..5\n# tests 7\n# suites 0\n# pass 4\n# fail 1\n# cancelled 0\n# skipped 1\n# todo 1\n# duration_ms 50.153806\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 1,
+   "xfailed": 1,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "1..5"
+  },
+  "cmd": "node --test --test-reporter=tap basic.test.mjs"
+ },
+ {
+  "name": "node_test_default_reporter_piped",
+  "framework": "node:test",
+  "real": true,
+  "text": "TAP version 13\n# Subtest: passes\nok 1 - passes\n  ---\n  duration_ms: 0.666286\n  type: 'test'\n  ...\n# Subtest: fails\nnot ok 2 - fails\n  ---\n  duration_ms: 0.66245\n  type: 'test'\n  location: '<scratch>/projects/tap_node/basic.test.mjs:5:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    1 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 1\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file://<scratch>/projects/tap_node/basic.test.mjs:5:30)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:744:18)\n    Test.postRun (node:internal/test_runner/test:1173:19)\n    Test.run (node:internal/test_runner/test:1101:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)\n  ...\n# Subtest: skipped\nok 3 - skipped # SKIP not now\n  ---\n  duration_ms: 0.088281\n  type: 'test'\n  ...\n# Subtest: todo failing\nnot ok 4 - todo failing # TODO later\n  ---\n  duration_ms: 0.18774\n  type: 'test'\n  location: '<scratch>/projects/tap_node/basic.test.mjs:7:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    1 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 1\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file://<scratch>/projects/tap_node/basic.test.mjs:7:56)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:744:18)\n    Test.postRun (node:internal/test_runner/test:1173:19)\n    Test.run (node:internal/test_runner/test:1101:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: parent\n    # Subtest: child ok\n    ok 1 - child ok\n      ---\n      duration_ms: 0.619421\n      type: 'test'\n      ...\n    # Subtest: child ok 2\n    ok 2 - child ok 2\n      ---\n      duration_ms: 0.1021\n      type: 'test'\n      ...\n    1..2\nok 5 - parent\n  ---\n  duration_ms: 1.142157\n  type: 'test'\n  ...\n1..5\n# tests 7\n# suites 0\n# pass 4\n# fail 1\n# cancelled 0\n# skipped 1\n# todo 1\n# duration_ms 48.904613\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 1,
+   "xfailed": 1,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "1..5"
+  },
+  "cmd": "node --test basic.test.mjs"
+ },
+ {
+  "name": "perl_test_more_raw_tap",
+  "framework": "perl Test::More",
+  "real": true,
+  "text": "1..5\nok 1 - first\nnot ok 2 - second\n#   Failed test 'second'\n#   at t/basic.t line 6.\n#          got: '1'\n#     expected: '2'\nok 3 # skip no network\nnot ok 4 - fourth # TODO not written\n#   Failed (TODO) test 'fourth'\n#   at t/basic.t line 8.\nok 5 - fifth\n# Looks like you failed 1 test of 5.\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 1,
+   "xfailed": 1,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "1..5"
+  },
+  "cmd": "perl t/basic.t"
+ },
+ {
+  "name": "perl_test_more_died_early",
+  "framework": "perl Test::More",
+  "real": true,
+  "text": "1..5\nok 1 - one\nok 2 - two\nok 3 - three\ncrashed after three\n# Looks like your test exited with 255 just after 3.\n",
+  "exit_code": 255,
+  "expected": {
+   "passed": 3,
+   "failed": 0,
+   "errors": 2,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "1..5"
+  },
+  "cmd": "perl t/dies.t"
+ },
+ {
+  "name": "prove_summary",
+  "framework": "prove",
+  "real": true,
+  "text": "\n#   Failed test 'second'\n#   at t/basic.t line 6.\n#          got: '1'\n#     expected: '2'\n# Looks like you failed 1 test of 5.\nt/basic.t ... \nDubious, test returned 1 (wstat 256, 0x100)\nFailed 1/5 subtests \n\t(less 1 skipped subtest: 3 okay)\nt/second.t .. ok\n\nTest Summary Report\n-------------------\nt/basic.t (Wstat: 256 (exited 1) Tests: 5 Failed: 1)\n  Failed test:  2\n  Non-zero exit status: 1\nFiles=2, Tests=7,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.06 cusr  0.01 csys =  0.09 CPU)\nResult: FAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": 1,
+   "errors": 0,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 7,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "Files=2, Tests=7,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.06 cusr  0.01 csys =  0.09 CPU)"
+  },
+  "cmd": "prove t/"
+ },
+ {
+  "name": "prove_verbose",
+  "framework": "prove",
+  "real": true,
+  "text": "\n#   Failed test 'second'\n#   at t/basic.t line 6.\n#          got: '1'\n#     expected: '2'\n# Looks like you failed 1 test of 5.\nt/basic.t ... \n1..5\nok 1 - first\nnot ok 2 - second\nok 3 # skip no network\nnot ok 4 - fourth # TODO not written\n#   Failed (TODO) test 'fourth'\n#   at t/basic.t line 8.\nok 5 - fifth\nDubious, test returned 1 (wstat 256, 0x100)\nFailed 1/5 subtests \n\t(less 1 skipped subtest: 3 okay)\nt/second.t .. \nok 1 - alpha\nok 2 - beta\n1..2\nok\n\nTest Summary Report\n-------------------\nt/basic.t (Wstat: 256 (exited 1) Tests: 5 Failed: 1)\n  Failed test:  2\n  Non-zero exit status: 1\nFiles=2, Tests=7,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.06 cusr  0.00 csys =  0.07 CPU)\nResult: FAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 1,
+   "xfailed": 1,
+   "xpassed": 0,
+   "total": 7,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "Files=2, Tests=7,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.06 cusr  0.00 csys =  0.07 CPU)"
+  },
+  "cmd": "prove -v t/"
+ },
+ {
+  "name": "prove_died_early",
+  "framework": "prove",
+  "real": true,
+  "text": "crashed after three\n# Looks like your test exited with 255 just after 3.\nt/dies.t .. \nDubious, test returned 255 (wstat 65280, 0xff00)\nFailed 2/5 subtests \n\nTest Summary Report\n-------------------\nt/dies.t (Wstat: 65280 (exited 255) Tests: 3 Failed: 0)\n  Non-zero exit status: 255\n  Parse errors: Bad plan.  You planned 5 tests but ran 3.\nFiles=1, Tests=3,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.02 cusr  0.01 csys =  0.04 CPU)\nResult: FAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": 0,
+   "errors": 1,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 3,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "Files=1, Tests=3,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.02 cusr  0.01 csys =  0.04 CPU)"
+  },
+  "cmd": "prove t/"
+ },
+ {
+  "name": "deno_test_unknown",
+  "framework": "deno",
+  "real": true,
+  "text": "running 2 tests from ./x_test.js\npasses ... ok (0ms)\nfails ... FAILED (1ms)\n\n ERRORS \n\nfails => ./x_test.js:2:6\nerror: Error: boom\nDeno.test(\"fails\", () => { throw new Error(\"boom\"); });\n                                 ^\n    at file://<scratch>/projects/deno_proj/x_test.js:2:34\n\n FAILURES \n\nfails => ./x_test.js:2:6\n\nFAILED | 1 passed | 1 failed (7ms)\n\nerror: Test failed\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": false,
+   "summary_line": null
+  },
+  "cmd": "deno test x_test.js"
+ },
+ {
+  "name": "dtree_own_tests_q",
+  "framework": "pytest",
+  "real": true,
+  "text": ".................                                                        [100%]\n17 passed in 0.15s\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 17,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 17,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "17 passed in 0.15s"
+  },
+  "cmd": "PYTHONPATH=src python -m pytest tests/test_store.py tests/test_schema.py -q -p no:cacheprovider --basetemp=<scratch>/dtree_basetemp"
+ },
+ {
+  "name": "tty_pytest_mixed",
+  "framework": "pytest",
+  "real": true,
+  "text": "\u001b[1m============================= test session starts ==============================\u001b[0m\r\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: <scratch>/projects/pytest_mixed\r\nconfigfile: pytest.ini\r\n\u001b[1mcollecting ... \u001b[0m\u001b[1m\rcollected 11 items / 1 deselected / 10 selected                                \u001b[0m\r\n\r\ntest_mixed.py \u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[31mF\u001b[0m\u001b[31mE\u001b[0m\u001b[33ms\u001b[0m\u001b[33ms\u001b[0m\u001b[33mx\u001b[0m\u001b[33mX\u001b[0m\u001b[31m                                                 [100%]\u001b[0m\r\n\r\n==================================== ERRORS ====================================\r\n\u001b[31m\u001b[1m_________________________ ERROR at setup of test_error _________________________\u001b[0m\r\n\r\n    \u001b[0m\u001b[37m@pytest\u001b[39;49;00m.fixture\u001b[90m\u001b[39;49;00m\r\n    \u001b[94mdef\u001b[39;49;00m\u001b[90m \u001b[39;49;00m\u001b[92mbroken\u001b[39;49;00m():\u001b[90m\u001b[39;49;00m\r\n>       \u001b[94mraise\u001b[39;49;00m \u001b[96mRuntimeError\u001b[39;49;00m(\u001b[33m\"\u001b[39;49;00m\u001b[33mfixture setup failed\u001b[39;49;00m\u001b[33m\"\u001b[39;49;00m)\u001b[90m\u001b[39;49;00m\r\n\u001b[1m\u001b[31mE       RuntimeError: fixture setup failed\u001b[0m\r\n\r\n\u001b[1m\u001b[31mtest_mixed.py\u001b[0m:8: RuntimeError\r\n=================================== FAILURES ===================================\r\n\u001b[31m\u001b[1m__________________________________ test_fail ___________________________________\u001b[0m\r\n\r\n    \u001b[0m\u001b[94mdef\u001b[39;49;00m\u001b[90m \u001b[39;49;00m\u001b[92mtest_fail\u001b[39;49;00m():\u001b[90m\u001b[39;49;00m\r\n>       \u001b[94massert\u001b[39;49;00m \u001b[94m2\u001b[39;49;00m * \u001b[94m2\u001b[39;49;00m == \u001b[94m5\u001b[39;49;00m\u001b[90m\u001b[39;49;00m\r\n\u001b[1m\u001b[31mE       assert (2 * 2) == 5\u001b[0m\r\n\r\n\u001b[1m\u001b[31mtest_mixed.py\u001b[0m:28: AssertionError\r\n\u001b[33m=============================== warnings summary ===============================\u001b[0m\r\ntest_mixed.py::test_pass_warns\r\n  <scratch>/projects/pytest_mixed/test_mixed.py:24: UserWarning: old api\r\n    warnings.warn(\"old api\", UserWarning)\r\n\r\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\r\n\u001b[36m\u001b[1m=========================== short test summary info ============================\u001b[0m\r\n\u001b[31mFAILED\u001b[0m test_mixed.py::\u001b[1mtest_fail\u001b[0m - assert (2 * 2) == 5\r\n\u001b[31mERROR\u001b[0m test_mixed.py::\u001b[1mtest_error\u001b[0m - RuntimeError: fixture setup failed\r\n\u001b[31m= \u001b[31m\u001b[1m1 failed\u001b[0m, \u001b[32m4 passed\u001b[0m, \u001b[33m2 skipped\u001b[0m, \u001b[33m1 deselected\u001b[0m, \u001b[33m1 xfailed\u001b[0m, \u001b[33m1 xpassed\u001b[0m, \u001b[33m1 warning\u001b[0m, \u001b[31m\u001b[1m1 error\u001b[0m\u001b[31m in 0.04s\u001b[0m\u001b[31m =\u001b[0m\r\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 1,
+   "skipped": 2,
+   "xfailed": 1,
+   "xpassed": 1,
+   "total": 10,
+   "framework": "pytest",
+   "ok": false,
+   "summary_line": "= 1 failed, 4 passed, 2 skipped, 1 deselected, 1 xfailed, 1 xpassed, 1 warning, 1 error in 0.04s ="
+  },
+  "cmd": "script -qec 'stty cols 80 rows 24; ~/miniforge3/envs/ut/bin/python -m pytest -m '\"'\"'not slow'\"'\"'' /dev/null"
+ },
+ {
+  "name": "tty_vitest4_mixed",
+  "framework": "vitest",
+  "real": true,
+  "text": "\u001b[?25l\r\n RUN  v4.1.11 <scratch>/projects/vitest_mixed\r\n\r\n ❯ mixed.test.js (6 tests | 1 failed | 1 skipped | 1 todo) 8ms\r\n     × divides wrong 5ms\r\n\r\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\r\n\r\n FAIL  mixed.test.js > math > divides wrong\r\nAssertionError: expected 2 to be 3 // Object.is equality\r\n\r\n- Expected\r\n+ Received\r\n\r\n- 3\r\n+ 2\r\n\r\n ❯ mixed.test.js:4:47\r\n      2|   test('adds', () => { expect(1 + 1).toBe(2) })\r\n      3|   test('multiplies', () => { expect(2 * 3).toBe(6) })\r\n      4|   test('divides wrong', () => { expect(6 / 3).toBe(3) })\r\n       |                                               ^\r\n      5|   test.skip('skipped', () => {})\r\n      6|   test.todo('todo later')\r\n\r\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\r\n\r\n\r\n Test Files  1 failed (1)\r\n      Tests  1 failed | 2 passed | 1 expected fail | 1 skipped | 1 todo (6)\r\n   Start at  22:23:42\r\n   Duration  129ms (transform 10ms, setup 0ms, import 17ms, tests 8ms, environment 0ms)\r\n\r\n\u001b[?25h",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": 1,
+   "xpassed": null,
+   "total": 6,
+   "framework": "vitest",
+   "ok": false,
+   "summary_line": "Tests  1 failed | 2 passed | 1 expected fail | 1 skipped | 1 todo (6)"
+  },
+  "cmd": "script -qec 'stty cols 80 rows 24; node ~/projects/Margent/node_modules/vitest/vitest.mjs run --globals' /dev/null"
+ },
+ {
+  "name": "tty_mocha_mixed",
+  "framework": "mocha",
+  "real": true,
+  "text": "\r\n\u001b[0m\u001b[0m\r\n\u001b[0m  math\u001b[0m\r\n  \u001b[32m  \u001b[32m✔\u001b[39m\u001b[0m\u001b[90m adds\u001b[0m\r\n  \u001b[32m  \u001b[32m✔\u001b[39m\u001b[0m\u001b[90m multiplies\u001b[0m\r\n  \u001b[32m  \u001b[32m✔\u001b[39m\u001b[0m\u001b[90m subtracts\u001b[0m\r\n  \u001b[31m  1) divides wrong\u001b[0m\r\n  \u001b[36m  - skipped one\u001b[0m\r\n  \u001b[36m  - pending without body\u001b[0m\r\n\r\n\r\n\u001b[92m \u001b[0m\u001b[32m 3 passing\u001b[0m\u001b[90m (4ms)\u001b[0m\r\n\u001b[36m \u001b[0m\u001b[36m 2 pending\u001b[0m\r\n\u001b[31m  1 failing\u001b[0m\r\n\r\n\u001b[0m  1) math\r\n       divides wrong:\r\n\r\n      \u001b[31mAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n\r\n2 !== 3\r\n\u001b[0m\r\n      \u001b[32m+ expected\u001b[0m \u001b[31m- actual\u001b[0m\r\n\r\n      \u001b[31m-2\u001b[0m\r\n      \u001b[32m+3\u001b[0m\r\n      \u001b[0m\u001b[90m\r\n      at Context.<anonymous> (test/mixed.spec.js:7:44)\r\n      at process.processImmediate (node:internal/timers:484:21)\r\n\u001b[0m\r\n\r\n\r\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 3,
+   "failed": 1,
+   "errors": null,
+   "skipped": 2,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 6,
+   "framework": "mocha",
+   "ok": false,
+   "summary_line": "3 passing (4ms) / 2 pending / 1 failing"
+  },
+  "cmd": "script -qec 'stty cols 80 rows 24; node ~/projects/thaibookfair/frontend/node_modules/mocha/bin/mocha.js' /dev/null"
+ },
+ {
+  "name": "tty_node_test_spec_reporter",
+  "framework": "node:test",
+  "real": true,
+  "text": "\u001b[32m✔ passes \u001b[90m(0.701379ms)\u001b[39m\u001b[39m\r\n\u001b[31m✖ fails \u001b[90m(0.639401ms)\u001b[39m\u001b[39m\r\n\u001b[90m﹣ skipped \u001b[90m(0.08455ms)\u001b[39m # not now\u001b[39m\r\n\u001b[31m✖ todo failing \u001b[90m(0.200981ms)\u001b[39m # later\u001b[39m\r\n▶ parent\r\n  \u001b[32m✔ child ok \u001b[90m(0.658826ms)\u001b[39m\u001b[39m\r\n  \u001b[32m✔ child ok 2 \u001b[90m(0.097898ms)\u001b[39m\u001b[39m\r\n\u001b[32m✔ parent \u001b[90m(1.161717ms)\u001b[39m\u001b[39m\r\n\u001b[34mℹ tests 7\u001b[39m\r\n\u001b[34mℹ suites 0\u001b[39m\r\n\u001b[34mℹ pass 4\u001b[39m\r\n\u001b[34mℹ fail 1\u001b[39m\r\n\u001b[34mℹ cancelled 0\u001b[39m\r\n\u001b[34mℹ skipped 1\u001b[39m\r\n\u001b[34mℹ todo 1\u001b[39m\r\n\u001b[34mℹ duration_ms 48.573837\u001b[39m\r\n\r\n\u001b[31m✖ failing tests:\u001b[39m\r\n\r\ntest at basic.test.mjs:5:1\r\n\u001b[31m✖ fails \u001b[90m(0.639401ms)\u001b[39m\u001b[39m\r\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n  \r\n  1 !== 2\r\n  \r\n      at TestContext.<anonymous> \u001b[90m(file://<scratch>/projects/tap_node/\u001b[39mbasic.test.mjs:5:30\u001b[90m)\u001b[39m\r\n  \u001b[90m    at Test.runInAsyncScope (node:async_hooks:214:14)\u001b[39m\r\n  \u001b[90m    at Test.run (node:internal/test_runner/test:1047:25)\u001b[39m\r\n  \u001b[90m    at Test.processPendingSubtests (node:internal/test_runner/test:744:18)\u001b[39m\r\n  \u001b[90m    at Test.postRun (node:internal/test_runner/test:1173:19)\u001b[39m\r\n  \u001b[90m    at Test.run (node:internal/test_runner/test:1101:12)\u001b[39m\r\n  \u001b[90m    at async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)\u001b[39m {\r\n    generatedMessage: \u001b[33mtrue\u001b[39m,\r\n    code: \u001b[32m'ERR_ASSERTION'\u001b[39m,\r\n    actual: \u001b[33m1\u001b[39m,\r\n    expected: \u001b[33m2\u001b[39m,\r\n    operator: \u001b[32m'strictEqual'\u001b[39m,\r\n    diff: \u001b[32m'simple'\u001b[39m\r\n  }\r\n\r\ntest at basic.test.mjs:7:1\r\n\u001b[31m✖ todo failing \u001b[90m(0.200981ms)\u001b[39m # later\u001b[39m\r\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n  \r\n  1 !== 2\r\n  \r\n      at TestContext.<anonymous> \u001b[90m(file://<scratch>/projects/tap_node/\u001b[39mbasic.test.mjs:7:56\u001b[90m)\u001b[39m\r\n  \u001b[90m    at Test.runInAsyncScope (node:async_hooks:214:14)\u001b[39m\r\n  \u001b[90m    at Test.run (node:internal/test_runner/test:1047:25)\u001b[39m\r\n  \u001b[90m    at Test.processPendingSubtests (node:internal/test_runner/test:744:18)\u001b[39m\r\n  \u001b[90m    at Test.postRun (node:internal/test_runner/test:1173:19)\u001b[39m\r\n  \u001b[90m    at Test.run (node:internal/test_runner/test:1101:12)\u001b[39m\r\n  \u001b[90m    at async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\u001b[39m {\r\n    generatedMessage: \u001b[33mtrue\u001b[39m,\r\n    code: \u001b[32m'ERR_ASSERTION'\u001b[39m,\r\n    actual: \u001b[33m1\u001b[39m,\r\n    expected: \u001b[33m2\u001b[39m,\r\n    operator: \u001b[32m'strictEqual'\u001b[39m,\r\n    diff: \u001b[32m'simple'\u001b[39m\r\n  }\r\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": false,
+   "summary_line": null
+  },
+  "cmd": "script -qec 'stty cols 80 rows 24; node --test basic.test.mjs' /dev/null"
+ },
+ {
+  "name": "jest_mixed",
+  "framework": "jest",
+  "real": false,
+  "text": " PASS  src/sum.test.js\n FAIL  src/divide.test.js\n  ● divide › by zero\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: Infinity\n    Received: NaN\n\n      4 |\n      5 | test('by zero', () => {\n    > 6 |   expect(divide(0, 0)).toBe(Infinity);\n        |                        ^\n      7 | });\n\n      at Object.toBe (src/divide.test.js:6:24)\n\nTest Suites: 1 failed, 1 passed, 2 total\nTests:       1 failed, 1 skipped, 1 todo, 4 passed, 7 total\nSnapshots:   0 total\nTime:        0.512 s, estimated 1 s\nRan all test suites.\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 4,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 7,
+   "framework": "jest",
+   "ok": false,
+   "summary_line": "Tests:       1 failed, 1 skipped, 1 todo, 4 passed, 7 total"
+  },
+  "source": "jest @jest/reporters getSummary(): 'Tests:       ' + failed, skipped, todo, passed + ' total' (jestjs.io docs and CI logs)"
+ },
+ {
+  "name": "jest_suite_failed_to_run",
+  "framework": "jest",
+  "real": false,
+  "text": " FAIL  src/broken.test.js\n  ● Test suite failed to run\n\n    Cannot find module './missing' from 'src/broken.test.js'\n\n    > 1 | const m = require('./missing');\n        |           ^\n\n      at Resolver._throwModNotFoundError (node_modules/jest-resolve/build/resolver.js:427:11)\n      at Object.require (src/broken.test.js:1:1)\n\n PASS  src/sum.test.js\n\nTest Suites: 1 failed, 1 passed, 2 total\nTests:       2 passed, 2 total\nSnapshots:   0 total\nTime:        0.4 s\nRan all test suites.\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 2,
+   "framework": "jest",
+   "ok": false,
+   "summary_line": "Tests:       2 passed, 2 total"
+  },
+  "source": "jest @jest/reporters getSummary(): 'Tests:       ' + failed, skipped, todo, passed + ' total' (jestjs.io docs and CI logs); suite load errors print '● Test suite failed to run'"
+ },
+ {
+  "name": "jest_tty_colour_crlf",
+  "framework": "jest",
+  "real": false,
+  "text": "\u001b[2K\u001b[1G\u001b[1mRUNS\u001b[22m src/sum.test.js\r\u001b[2K\u001b[1GTest Suites: 0 of 2 total\r\u001b[2K\u001b[1G\u001b[0m\u001b[7m\u001b[1m\u001b[32m PASS \u001b[39m\u001b[22m\u001b[27m\u001b[0m src/sum.test.js\r\n\u001b[0m\u001b[7m\u001b[1m\u001b[32m PASS \u001b[39m\u001b[22m\u001b[27m\u001b[0m src/trim.test.js\r\n\r\n\u001b[1mTest Suites: \u001b[22m\u001b[1m\u001b[32m2 passed\u001b[39m\u001b[22m, 2 total\r\n\u001b[1mTests:       \u001b[22m\u001b[1m\u001b[32m5 passed\u001b[39m\u001b[22m, 5 total\r\n\u001b[1mSnapshots:   \u001b[22m0 total\r\n\u001b[1mTime:\u001b[22m        0.8 s\r\n\u001b[2mRan all test suites\u001b[22m\u001b[2m.\u001b[22m\r\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 5,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 5,
+   "framework": "jest",
+   "ok": true,
+   "summary_line": "Tests:       5 passed, 5 total"
+  },
+  "source": "jest @jest/reporters getSummary(): 'Tests:       ' + failed, skipped, todo, passed + ' total' (jestjs.io docs and CI logs); chalk bold/green SGR codes and the TTY progress redraw (ESC[2K ESC[1G, CR) as jest prints on a terminal"
+ },
+ {
+  "name": "jest_reprinted_failures_over_20_suites",
+  "framework": "jest",
+  "real": false,
+  "text": " PASS  src/s00.test.js\n PASS  src/s01.test.js\n PASS  src/s02.test.js\n PASS  src/s03.test.js\n PASS  src/s04.test.js\n PASS  src/s05.test.js\n PASS  src/s06.test.js\n PASS  src/s07.test.js\n PASS  src/s08.test.js\n PASS  src/s09.test.js\n PASS  src/s10.test.js\n PASS  src/s11.test.js\n PASS  src/s12.test.js\n PASS  src/s13.test.js\n PASS  src/s14.test.js\n PASS  src/s15.test.js\n PASS  src/s16.test.js\n PASS  src/s17.test.js\n PASS  src/s18.test.js\n PASS  src/s19.test.js\n FAIL  src/broken.test.js\n  ● Test suite failed to run\n\n    Cannot find module './missing' from 'src/broken.test.js'\n\nSummary of all failing tests\n FAIL  src/broken.test.js\n  ● Test suite failed to run\n\n    Cannot find module './missing' from 'src/broken.test.js'\n\n\nTest Suites: 1 failed, 20 passed, 21 total\nTests:       40 passed, 40 total\nSnapshots:   0 total\nTime:        3.2 s\nRan all test suites.\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 40,
+   "failed": 0,
+   "errors": 1,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 40,
+   "framework": "jest",
+   "ok": false,
+   "summary_line": "Tests:       40 passed, 40 total"
+  },
+  "source": "jest @jest/reporters getSummary(): 'Tests:       ' + failed, skipped, todo, passed + ' total' (jestjs.io docs and CI logs); SummaryReporter._printSummary re-prints failures when suites > summaryThreshold (20)"
+ },
+ {
+  "name": "jest_no_tests",
+  "framework": "jest",
+  "real": false,
+  "text": "No tests found, exiting with code 1\nRun with `--passWithNoTests` to exit with code 0\nIn /home/user/app\n  4 files checked.\n  testMatch: **/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x) - 0 matches\n  testPathIgnorePatterns: /node_modules/ - 4 matches\n  testRegex:  - 0 matches\nPattern:  - 0 matches\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 0,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 0,
+   "framework": "jest",
+   "ok": false,
+   "summary_line": "No tests found, exiting with code 1"
+  },
+  "source": "jest SearchSource/getNoTestsFoundMessage text"
+ },
+ {
+  "name": "jest_two_runs_last_wins",
+  "framework": "jest",
+  "real": false,
+  "text": " FAIL  src/divide.test.js\n  ● divide › by zero\n\n    expect(received).toBe(expected) // Object.is equality\n\nTest Suites: 1 failed, 1 passed, 2 total\nTests:       1 failed, 4 passed, 5 total\nSnapshots:   0 total\nTime:        0.6 s\nRan all test suites.\n PASS  src/divide.test.js\n PASS  src/sum.test.js\n\nTest Suites: 2 passed, 2 total\nTests:       5 passed, 5 total\nSnapshots:   0 total\nTime:        0.5 s\nRan all test suites.\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 5,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 5,
+   "framework": "jest",
+   "ok": true,
+   "summary_line": "Tests:       5 passed, 5 total"
+  },
+  "source": "jest @jest/reporters getSummary(): 'Tests:       ' + failed, skipped, todo, passed + ' total' (jestjs.io docs and CI logs); two runs in one log (jest; jest)"
+ },
+ {
+  "name": "go_fail_plain",
+  "framework": "go",
+  "real": false,
+  "text": "--- FAIL: TestDivide (0.00s)\n    calc_test.go:14: Divide(6, 3) = 3, want 2\nFAIL\nFAIL\texample.com/calc\t0.002s\nok  \texample.com/calc/parse\t0.001s [no tests to run]\nok  \texample.com/calc/strutil\t0.003s\tcoverage: 85.7% of statements\n?   \texample.com/calc/cmd/calc\t[no test files]\nFAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": 1,
+   "errors": 0,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "go",
+   "ok": false,
+   "summary_line": "?   \texample.com/calc/cmd/calc\t[no test files]"
+  },
+  "source": "cmd/go test.go format strings: 'ok  \\t%s\\t%s', 'FAIL\\t%s\\t%s', '?   \\t%s\\t[no test files]', 'FAIL\\t%s [build failed]'; testing: '--- FAIL: %s (%s)'"
+ },
+ {
+  "name": "go_verbose_subtests",
+  "framework": "go",
+  "real": false,
+  "text": "=== RUN   TestAdd\n--- PASS: TestAdd (0.00s)\n=== RUN   TestDivide\n    calc_test.go:14: Divide(6, 3) = 3, want 2\n--- FAIL: TestDivide (0.00s)\n=== RUN   TestTable\n=== RUN   TestTable/zero\n=== RUN   TestTable/negative\n    calc_test.go:30: skipping negative\n=== RUN   TestTable/big\n--- PASS: TestTable (0.00s)\n    --- PASS: TestTable/zero (0.00s)\n    --- SKIP: TestTable/negative (0.00s)\n    --- PASS: TestTable/big (0.00s)\n=== RUN   TestSkipped\n    calc_test.go:40: needs network\n--- SKIP: TestSkipped (0.00s)\nFAIL\nFAIL\texample.com/calc\t0.004s\n=== RUN   TestTrim\n--- PASS: TestTrim (0.00s)\nPASS\nok  \texample.com/calc/strutil\t0.002s\nFAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 5,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 2,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 8,
+   "framework": "go",
+   "ok": false,
+   "summary_line": "ok  \texample.com/calc/strutil\t0.002s"
+  },
+  "source": "cmd/go test.go format strings: 'ok  \\t%s\\t%s', 'FAIL\\t%s\\t%s', '?   \\t%s\\t[no test files]', 'FAIL\\t%s [build failed]'; testing: '--- FAIL: %s (%s)'; go test -v ./..."
+ },
+ {
+  "name": "go_build_failed",
+  "framework": "go",
+  "real": false,
+  "text": "# example.com/calc [example.com/calc.test]\n./calc_test.go:9:9: undefined: Multiply\nFAIL\texample.com/calc [build failed]\nok  \texample.com/calc/strutil\t(cached)\nFAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": 0,
+   "errors": 1,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "go",
+   "ok": false,
+   "summary_line": "ok  \texample.com/calc/strutil\t(cached)"
+  },
+  "source": "cmd/go test.go format strings: 'ok  \\t%s\\t%s', 'FAIL\\t%s\\t%s', '?   \\t%s\\t[no test files]', 'FAIL\\t%s [build failed]'; testing: '--- FAIL: %s (%s)'"
+ },
+ {
+  "name": "go_timeout_panic",
+  "framework": "go",
+  "real": false,
+  "text": "panic: test timed out after 1s\n\trunning tests:\n\t\tTestSlow (1s)\n\ngoroutine 7 [running]:\ntesting.(*M).startAlarm.func1()\n\t/usr/local/go/src/testing/testing.go:2373 +0x265\ncreated by time.goFunc\n\t/usr/local/go/src/time/sleep.go:215 +0x2d\nFAIL\texample.com/slow\t1.009s\nFAIL\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": null,
+   "failed": 0,
+   "errors": 1,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "go",
+   "ok": false,
+   "summary_line": "FAIL\texample.com/slow\t1.009s"
+  },
+  "source": "cmd/go test.go format strings: 'ok  \\t%s\\t%s', 'FAIL\\t%s\\t%s', '?   \\t%s\\t[no test files]', 'FAIL\\t%s [build failed]'; testing: '--- FAIL: %s (%s)'; testing alarm panic on -timeout"
+ },
+ {
+  "name": "go_two_runs_last_wins",
+  "framework": "go",
+  "real": false,
+  "text": "--- FAIL: TestDivide (0.00s)\n    calc_test.go:14: Divide(6, 3) = 3, want 2\nFAIL\nFAIL\texample.com/calc\t0.002s\nok  \texample.com/calc/strutil\t0.003s\nFAIL\nok  \texample.com/calc\t0.002s\nok  \texample.com/calc/strutil\t(cached)\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": null,
+   "failed": 0,
+   "errors": 0,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "go",
+   "ok": true,
+   "summary_line": "ok  \texample.com/calc/strutil\t(cached)"
+  },
+  "source": "cmd/go test.go format strings: 'ok  \\t%s\\t%s', 'FAIL\\t%s\\t%s', '?   \\t%s\\t[no test files]', 'FAIL\\t%s [build failed]'; testing: '--- FAIL: %s (%s)'; two runs of go test ./... in one log"
+ },
+ {
+  "name": "cargo_ok_with_doctests",
+  "framework": "cargo",
+  "real": false,
+  "text": "   Compiling adder v0.1.0 (/home/user/adder)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.57s\n     Running unittests src/lib.rs (target/debug/deps/adder-92948b65e88960b4)\n\nrunning 3 tests\ntest tests::exploration ... ok\ntest tests::expensive_test ... ignored\ntest tests::it_works ... ok\n\ntest result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n   Doc-tests adder\n\nrunning 1 test\ntest src/lib.rs - add (line 3) ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s\n\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 3,
+   "failed": 0,
+   "errors": null,
+   "skipped": 1,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 4,
+   "framework": "cargo",
+   "ok": true,
+   "summary_line": "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s"
+  },
+  "source": "libtest: 'test result: {}. {} passed; {} failed; {} ignored; {} measured; {} filtered out; finished in {:.2}s' (Rust book ch11 output)"
+ },
+ {
+  "name": "cargo_fail_integration",
+  "framework": "cargo",
+  "real": false,
+  "text": "   Compiling adder v0.1.0 (/home/user/adder)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s\n     Running unittests src/lib.rs (target/debug/deps/adder-92948b65e88960b4)\n\nrunning 2 tests\ntest tests::internal ... ok\ntest tests::it_works ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/integration_test.rs (target/debug/deps/integration_test-82e7799c1bc62298)\n\nrunning 2 tests\ntest it_adds_two ... ok\ntest it_divides ... FAILED\n\nfailures:\n\n---- it_divides stdout ----\n\nthread 'it_divides' panicked at tests/integration_test.rs:11:5:\nassertion `left == right` failed\n  left: 3\n right: 2\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    it_divides\n\ntest result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\nerror: test failed, to rerun pass `--test integration_test`\n",
+  "exit_code": 101,
+  "expected": {
+   "passed": 3,
+   "failed": 1,
+   "errors": null,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 4,
+   "framework": "cargo",
+   "ok": false,
+   "summary_line": "test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+  },
+  "source": "libtest: 'test result: {}. {} passed; {} failed; {} ignored; {} measured; {} filtered out; finished in {:.2}s' (Rust book ch11 output)"
+ },
+ {
+  "name": "cargo_two_runs_last_wins",
+  "framework": "cargo",
+  "real": false,
+  "text": "   Compiling adder v0.1.0 (/home/user/adder)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s\n     Running unittests src/lib.rs (target/debug/deps/adder-92948b65e88960b4)\n\nrunning 2 tests\ntest tests::internal ... ok\ntest tests::it_works ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/integration_test.rs (target/debug/deps/integration_test-82e7799c1bc62298)\n\nrunning 2 tests\ntest it_adds_two ... ok\ntest it_divides ... FAILED\n\nfailures:\n\n---- it_divides stdout ----\n\nthread 'it_divides' panicked at tests/integration_test.rs:11:5:\nassertion `left == right` failed\n  left: 3\n right: 2\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    it_divides\n\ntest result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\nerror: test failed, to rerun pass `--test integration_test`\n   Compiling adder v0.1.0 (/home/user/adder)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.48s\n     Running unittests src/lib.rs (target/debug/deps/adder-92948b65e88960b4)\n\nrunning 2 tests\ntest tests::internal ... ok\ntest tests::it_works ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/integration_test.rs (target/debug/deps/integration_test-82e7799c1bc62298)\n\nrunning 2 tests\ntest it_adds_two ... ok\ntest it_divides ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n   Doc-tests adder\n\nrunning 1 test\ntest src/lib.rs - add (line 3) ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s\n\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 5,
+   "failed": 0,
+   "errors": null,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 5,
+   "framework": "cargo",
+   "ok": true,
+   "summary_line": "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s"
+  },
+  "source": "libtest: 'test result: {}. {} passed; {} failed; {} ignored; {} measured; {} filtered out; finished in {:.2}s' (Rust book ch11 output); cargo test twice in one log (fix in between)"
+ },
+ {
+  "name": "cargo_old_format",
+  "framework": "cargo",
+  "real": false,
+  "text": "    Finished dev [unoptimized + debuginfo] target(s) in 0.51s\n     Running target/debug/deps/adder-1f1b2b3c4d5e6f70\n\nrunning 2 tests\ntest tests::a ... ok\ntest tests::b ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out\n\n   Doc-tests adder\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out\n\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": null,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 2,
+   "framework": "cargo",
+   "ok": true,
+   "summary_line": "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out"
+  },
+  "source": "libtest before 'finished in' was added (Rust ~1.30-1.60 era)"
+ },
+ {
+  "name": "cargo_compile_error",
+  "framework": "cargo",
+  "real": false,
+  "text": "   Compiling adder v0.1.0 (/home/user/adder)\nerror[E0425]: cannot find value `x` in this scope\n --> src/lib.rs:3:5\n  |\n3 |     x + 1\n  |     ^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `adder` (lib test) due to 1 previous error\n",
+  "exit_code": 101,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": false,
+   "summary_line": null
+  },
+  "source": "cargo/rustc compile error: no test result line"
+ },
+ {
+  "name": "pytest_old_seconds_wording",
+  "framework": "pytest",
+  "real": false,
+  "text": "========================== 2 passed, 1 skipped in 0.12 seconds ==========================\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 1,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 3,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "========================== 2 passed, 1 skipped in 0.12 seconds =========================="
+  },
+  "source": "pytest < 5.x printed 'in 0.12 seconds'"
+ },
+ {
+  "name": "pytest_long_run_duration",
+  "framework": "pytest",
+  "real": false,
+  "text": "======================= 120 passed, 3 skipped, 2 warnings in 65.12s (0:01:05) =======================\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 120,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 3,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 123,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "======================= 120 passed, 3 skipped, 2 warnings in 65.12s (0:01:05) ======================="
+  },
+  "source": "pytest format_session_duration() adds '(H:MM:SS)' after 60 s"
+ },
+ {
+  "name": "pytest_osc8_links_crlf",
+  "framework": "pytest",
+  "real": false,
+  "text": "test_a.py \u001b]8;;file:///p/test_a.py\u001b\\link\u001b]8;;\u001b\\ ..\r\n\u001b[32m==== \u001b[32m\u001b[1m2 passed\u001b[0m\u001b[32m in 0.01s\u001b[0m\u001b[32m ====\u001b[0m\r\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 2,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 2,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "==== 2 passed in 0.01s ===="
+  },
+  "source": "pytest SGR colours plus OSC 8 hyperlinks and CRLF line ends (hand-made stress text)"
+ },
+ {
+  "name": "pytest_tput_charset_escapes",
+  "framework": "pytest",
+  "real": false,
+  "text": "\u001b(B\u001b[m\u001b7.....\u001b8\n\u001b(B\u001b[m5 passed in 0.01s\u001b(B\u001b[m\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": 5,
+   "failed": 0,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 5,
+   "framework": "pytest",
+   "ok": true,
+   "summary_line": "5 passed in 0.01s"
+  },
+  "source": "ESC ( B charset and ESC 7 / ESC 8 cursor escapes as ncurses `tput sgr0` emits them (hand-made stress text)"
+ },
+ {
+  "name": "tap14_bail_out",
+  "framework": "tap",
+  "real": false,
+  "text": "TAP version 14\n1..4\nok 1 - connects\nnot ok 2 - reads\n  ---\n  message: timeout\n  ...\nBail out! database went away\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 1,
+   "failed": 1,
+   "errors": 3,
+   "skipped": 0,
+   "xfailed": 0,
+   "xpassed": 0,
+   "total": 4,
+   "framework": "tap",
+   "ok": false,
+   "summary_line": "1..4"
+  },
+  "source": "TAP 14 spec: 'Bail out!' stops the run; 2 of 4 planned tests never report"
+ },
+ {
+  "name": "composite_pytest_then_jest",
+  "framework": "pytest+jest",
+  "real": false,
+  "text": "5 passed in 0.10s\n> app@1.0.0 test\n> jest\n\n FAIL  src/divide.test.js\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 2 passed, 3 total\nSnapshots:   0 total\nTime:        0.4 s\n",
+  "exit_code": 1,
+  "expected": {
+   "passed": 2,
+   "failed": 1,
+   "errors": 0,
+   "skipped": 0,
+   "xfailed": null,
+   "xpassed": null,
+   "total": 3,
+   "framework": "jest",
+   "ok": false,
+   "summary_line": "Tests:       1 failed, 2 passed, 3 total"
+  },
+  "source": "a composite command (pytest && npm test): the last summary wins"
+ },
+ {
+  "name": "unknown_build_tool_words",
+  "framework": "vite",
+  "real": false,
+  "text": "vite v5.4.0 building for production...\n✓ 12 modules transformed.\n12 files written in 0.53s\ndist/index.html  0.46 kB\n",
+  "exit_code": 0,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": true,
+   "summary_line": null
+  },
+  "source": "negative case: '<n> <words> in <t>s' that is not a pytest summary"
+ },
+ {
+  "name": "unknown_empty_output",
+  "framework": "none",
+  "real": false,
+  "text": "",
+  "exit_code": 0,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": true,
+   "summary_line": null
+  },
+  "source": "negative case: no output at all"
+ },
+ {
+  "name": "unknown_make_error",
+  "framework": "make",
+  "real": false,
+  "text": "make: *** [Makefile:3: test] Error 2\n",
+  "exit_code": 2,
+  "expected": {
+   "passed": null,
+   "failed": null,
+   "errors": null,
+   "skipped": null,
+   "xfailed": null,
+   "xpassed": null,
+   "total": null,
+   "framework": "unknown",
+   "ok": false,
+   "summary_line": null
+  },
+  "source": "negative case: the command failed before any test runner"
+ }
+]
