@@ -418,5 +418,5 @@ def test_the_docs_name_five_tables_and_no_stale_limit():
     schema = (ROOT / "docs" / "schema.md").read_text(encoding="utf-8")
     merge_doc = (ROOT / "docs" / "merge.md").read_text(encoding="utf-8")
     assert "four tables" not in readme and "five tables (`decisions`, `events`, `trials`, `jobs`, `checks`)" in readme
-    assert "มี 4 ตาราง" not in schema and "มี 5 ตาราง" in schema
+    assert "four tables" not in schema and "five tables" in schema                    # the docs are English first (2026-11-04)
     assert "without the in-the-way check" not in merge_doc
